@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('peternakan', function (Blueprint $table) {
+        Schema::create('tbl_peternakan', function (Blueprint $table) {
             $table->id();
+            $table->string('provinsi_peternakan',200);
+            $table->string('kab_kota_peternakan',200);
+            $table->string('alamat_peternakan',200);
+            $table->string('nama_peternakan',200);
+            $table->string('no_telp',200);
             $table->timestamps();
         });
     }
