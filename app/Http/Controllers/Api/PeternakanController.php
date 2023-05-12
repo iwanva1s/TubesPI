@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Hewan;
 use App\Models\Peternakan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -184,4 +186,57 @@ class PeternakanController extends Controller
 
     }
 
+    public function gab1()
+{
+    // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
+    $data = DB::table('tbl_hewan')
+                ->join('tbl_peternakan', 'tbl_hewan.id_peternakan', '=', 'tbl_peternakan.id')
+                ->select('tbl_hewan.id', 'tbl_hewan.nama_hewan', 'tbl_hewan.jenis_hewan', 'tbl_peternakan.nama_peternakan')
+                ->get();
+
+    // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'peternakan' => $data
+    ],200 );
+}
+
+    public function gab1_id_hewan($id)
+    {
+    // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
+    $data = DB::table('tbl_hewan')
+                ->join('tbl_peternakan', 'tbl_hewan.id_peternakan', '=', 'tbl_peternakan.id')
+                ->select('tbl_hewan.id', 'tbl_hewan.nama_hewan', 'tbl_hewan.jenis_hewan', 'tbl_peternakan.nama_peternakan')
+                ->where('tbl_hewan.id','=',$id)
+                ->get();
+
+    // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'peternakan' => $data
+    ],200 );
+    }
+    
+    public function gab1_id_pet($id)
+    {
+    // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
+    $data = DB::table('tbl_peternakan')
+                ->join('tbl_hewan', 'tbl_hewan.id_peternakan', '=', 'tbl_peternakan.id')
+                ->select('tbl_peternakan.id',
+                        'tbl_peternakan.nama_peternakan',
+                        'tbl_peternakan.kab_kota_peternakan',
+                        'tbl_peternakan.alamat_peternakan',
+                        'tbl_peternakan.no_telp',
+                        'tbl_hewan.id',
+                        'tbl_hewan.nama_hewan'
+                        )
+                ->where('tbl_peternakan.id','=',$id)
+                ->get();
+
+    // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'peternakan' => $data
+    ],200 );
+    }
 }
