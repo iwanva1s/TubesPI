@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_peternakan', function (Blueprint $table) {
+        Schema::create('tbl_provinsi', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_provinsi');
-            $table->string('alamat_peternakan',200);
-            $table->string('nama_peternakan',200);
-            $table->string('no_telp',200);
+            $table->string('nama_provinsi',200);
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_peternakan');
+        Schema::dropIfExists('tbl_provinsi');
     }
 };

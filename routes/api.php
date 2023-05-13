@@ -51,10 +51,15 @@ Route::delete('produk/{id_produk}/delete',[ProdukController::class, 'destroy']);
 
 // data semua hewan dan asal peternakannya
 Route::get('hewan&pet',[PeternakanController::class, 'gab1']);
-// data semua hewan dan asal peternakannya sesuai id
+// data semua hewan dan asal peternakannya sesuai id_hewan
 Route::get('hewan/{id_hewan}',[PeternakanController::class, 'gab1_id_hewan']);
-// data semua peternakan sesuai id beserta semua hewan yang di miliki
+// data semua peternakan sesuai id beserta semua hewan yang dia miliki
 Route::get('pet/{id_pet}',[PeternakanController::class, 'gab1_id_pet']);
 
+// ===================================================================================//
+// data semua peternakan dan provinsi nya
+Route::get('pet_pro/',[PeternakanController::class, 'pet_pro']);
+// data semua peternakan dalam sebuah daerah
+Route::get('pet_pro/{id_pro}',[PeternakanController::class, 'pet_pro2']);
 
 
