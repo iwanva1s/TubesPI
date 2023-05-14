@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Hewan;
 use App\Models\Peternakan;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -38,7 +39,6 @@ class PeternakanController extends Controller
 
         $validator = Validator::make($request->all(),[
             'provinsi_peternakan' => 'required|string|max:200',
-            'kab_kota_peternakan' => 'required|string|max:200',
             'alamat_peternakan' => 'required|string|max:200',
             'nama_peternakan' => 'required|string|max:200',
             'no_telp' => 'required|max:200'
@@ -55,7 +55,6 @@ class PeternakanController extends Controller
 
             $peternakan = Peternakan::create([
                 'provinsi_peternakan' => $request->provinsi_peternakan,
-                'kab_kota_peternakan' => $request->kab_kota_peternakan,
                 'alamat_peternakan' => $request->alamat_peternakan,
                 'nama_peternakan' => $request->nama_peternakan,
                 'no_telp' => $request->no_telp
@@ -126,7 +125,6 @@ class PeternakanController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'provinsi_peternakan' => 'required|string|max:200',
-            'kab_kota_peternakan' => 'required|string|max:200',
             'alamat_peternakan' => 'required|string|max:200',
             'nama_peternakan' => 'required|string|max:200',
             'no_telp' => 'required|max:200'
@@ -147,7 +145,7 @@ class PeternakanController extends Controller
 
                 $peternakan->update([
                     'provinsi_peternakan' => $request->provinsi_peternakan,
-                    'kab_kota_peternakan' => $request->kab_kota_peternakan,
+
                     'alamat_peternakan' => $request->alamat_peternakan,
                     'nama_peternakan' => $request->nama_peternakan,
                     'no_telp' => $request->no_telp
@@ -224,7 +222,6 @@ class PeternakanController extends Controller
                 ->join('tbl_hewan', 'tbl_hewan.id_peternakan', '=', 'tbl_peternakan.id')
                 ->select('tbl_peternakan.id',
                         'tbl_peternakan.nama_peternakan',
-                        'tbl_peternakan.kab_kota_peternakan',
                         'tbl_peternakan.alamat_peternakan',
                         'tbl_peternakan.no_telp',
                         'tbl_hewan.id',
@@ -239,4 +236,50 @@ class PeternakanController extends Controller
         'peternakan' => $data
     ],200 );
     }
+
+
+    public function pet_pro()
+{
+    // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
+    $data = DB::table('tbl_peternakan')
+                ->join('tbl_provinsi', 'tbl_provinsi.id', '=', 'tbl_peternakan.id_provinsi')
+                ->select('tbl_peternakan.id',
+                        'tbl_peternakan.nama_peternakan',
+                        'tbl_peternakan.alamat_peternakan',
+                        'tbl_peternakan.no_telp',
+                        'tbl_provinsi.id',
+                        'tbl_provinsi.nama_provinsi'
+                )
+                ->get();
+
+    // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'peternakan' => $data
+    ],200 );
+}
+
+    public function pet_pro2($id)
+    {
+    // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
+    $data = DB::table('tbl_peternakan')
+                ->join('tbl_provinsi', 'tbl_provinsi.id', '=', 'tbl_peternakan.id_provinsi')
+                ->select('tbl_peternakan.id',
+                        'tbl_peternakan.nama_peternakan',
+                        'tbl_peternakan.alamat_peternakan',
+                        'tbl_peternakan.no_telp',
+                        'tbl_provinsi.id',
+                        'tbl_provinsi.nama_provinsi'
+                        )
+                ->where('tbl_peternakan.id','=',$id)
+                ->get();
+
+    // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'peternakan' => $data
+    ],200 );
+    }
+    
+
 }

@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('tbl_peternakan', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('provinsi_peternakan',200);
-            $table->string('kab_kota_peternakan',200);
+            $table->unsignedInteger('id_provinsi');
             $table->string('alamat_peternakan',200);
             $table->string('nama_peternakan',200);
             $table->string('no_telp',200);
