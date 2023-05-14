@@ -5,8 +5,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\HewanController;
 use App\Http\Controllers\Api\ProdukController;
 use App\Http\Controllers\Api\PeternakanController;
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,11 +17,12 @@ Route::post('login', [AuthController::class, 'login']);
 |
 */
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
-    });
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
 
-// API untuk tabel tbl_peternakan
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('user', [AuthController::class, 'getUser']);
+    // API untuk tabel tbl_peternakan
 Route::get('peternakan',[PeternakanController::class, 'index']);
 Route::post('peternakan',[PeternakanController::class, 'store']);
 Route::get('peternakan/{id_peternakan}',[PeternakanController::class, 'show']);
@@ -61,5 +61,10 @@ Route::get('pet/{id_pet}',[PeternakanController::class, 'gab1_id_pet']);
 Route::get('pet_pro/',[PeternakanController::class, 'pet_pro']);
 // data semua peternakan dalam sebuah daerah
 Route::get('pet_pro/{id_pro}',[PeternakanController::class, 'pet_pro2']);
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+    });
+
+
 
 

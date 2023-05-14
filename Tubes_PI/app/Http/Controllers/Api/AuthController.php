@@ -1,66 +1,58 @@
 <?php
-namespace App\Http\Controllers\Api;
-use App\Http\Controllers\Controller;
-use App\Models\User;
+   
+namespace App\Http\Controllers\API;
+   
 use Illuminate\Http\Request;
+use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Validator;
+use App\Models\User;
+   
+class AuthController extends BaseController
+{
+    public function login(Request $request)
+    {
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
+            $authUser = Auth::user(); 
+            $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken; 
+            $success['name'] =  $authUser->name;
+   
+            return $this->sendResponse($success, 'User signed in');
+        } 
+        else{ 
+            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+        } 
+    }
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+   
+        if($validator->fails()){
+            return $this->sendError('Error validation', $validator->errors());       
+        }
+   
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $user = User::create($input);
+        $success['token'] =  $user->createToken('MyAuthApp')->plainTextToken;
+        $success['name'] =  $user->name;
+   
+        return $this->sendResponse($success, 'User created successfully.');
+    }
 
-class AuthController extends Controller
-{
-public function register(Request $request)
-{
-$validator = Validator::make($request->all(), [
-'name' => 'required|string|max:255',
-'email' => 'required|string|max:255|unique:users',
-'phone' => 'required|unique|users,phone',
-'password' => 'required|string|min:8',
-'level_id' => 'required',
-]);
-if ($validator->fails()) {
-return response()->json($validator->errors());
-}
-$phone_number = $request['phone_number'];
-if ($request['phone_number'][0] == “0”) {
-$phone_number = substr($phone_number, 1);
-}
-if ($phone_number[0] == “15”) {
-$phone_number = “62” . $phone_number;
-}
-$user = new user;
-$user->name = $request->name;
-$user->email = $request->email;
-$user->phone_number = $phone_number;
-$user->password = Hash::make($request->password);
-$user->save();
-$token = $user->createToken('auth_token')->plainTextToken;
-return response()->json([
-'data' => $user,
-'access_token' => $token,
-'token_type' => 'Bearer'
-]);
-}
-public function login(Request $request)
-{
-if (! Auth::attempt($request->only('email', 'password'))) {
-return response()->json([
-'message' => 'Unauthorized'
-], 401);
-}
-$user = User::where('email', $request->email)->firstOrFail();
-$token = $user->createToken('auth_token')->plainTextToken;
-return response()->json([
-'message' => 'Login success',
-'access_token' => $token,
-'token_type' => 'Bearer'
-]);
-}
-public function logout()
-{
-Auth::user()->tokens()->delete();
-return response()->json([
-'message' => 'logout success'
-]);
-}
+    public function logout(Request $request){
+        $request->user()->currentAccessToken()->delete();
+        return response()->json(['success'=>'Logout berhasil'],200);
+    }
+
+    public function getUser() {
+        return response()->json([
+            "user"=>auth()->user()
+        ], Response::HTTP_OK);
+    }
+   
 }
