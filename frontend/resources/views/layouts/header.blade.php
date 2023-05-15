@@ -1,55 +1,116 @@
-<!-- Navigation-->
-<nav class="navbar navbar-light bg-light static-top">
+  <!-- Responsive navbar-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+                <a class="navbar-brand" href="#!"><span class="text-warning">Livestock</span>API</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#service">Service</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#team">Team</a>
+                        </li>
+                    </ul>
+                       <div class="dropdown ms-auto mb-2 mb-lg-0">
+                <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             Akun
+                  </button>
+                        <ul class="dropdown-menu ">
+                           <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#LoginModal" >Login</a></li>
+                           <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#RegisterModal" >Register</a></li>
+                        </ul>
+                      </div>
+                </div>
             </div>
         </nav>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container position-relative">
-                <div class="row justify-content-center">
-                    <div class="col-xl-6">
-                        <div class="text-center text-white">
-                            <!-- Page heading-->
-                            <h1 class="mb-5">Generate more leads with a professional landing page!</h1>
-                            <!-- Signup form-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- * * SB Forms Contact Form * *-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- This form is pre-integrated with SB Forms.-->
-                            <!-- To make this form functional, sign up at-->
-                            <!-- https://startbootstrap.com/solution/contact-forms-->
-                            <!-- to get an API token!-->
-                            <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                <!-- Email address input-->
-                                <div class="row">
-                                    <div class="col">
-                                        <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required,email" />
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
-                                    </div>
-                                    <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
-                                </div>
-                                <!-- Submit success message-->
-                                <!---->
-                                <!-- This is what your users will see when the form-->
-                                <!-- has successfully submitted-->
-                                <div class="d-none" id="submitSuccessMessage">
-                                    <div class="text-center mb-3">
-                                        <div class="fw-bolder">Form submission successful!</div>
-                                        <p>To activate this form, sign up at</p>
-                                        <a class="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                    </div>
-                                </div>
-                                <!-- Submit error message-->
-                                <!---->
-                                <!-- This is what your users will see when there is-->
-                                <!-- an error submitting the form-->
-                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                            </form>
+        <!-- Header-->
+        <!-- <header class="bg-light py-5">
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="text-center my-5">
+                            <h1 class="display-5 fw-bolder text-black mb-2">Present your business in a whole new way</h1>
+                            <p class="lead text-black-50 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                <a class="btn btn-secondary btn-lg px-4 me-sm-3" href="#documentation">Documentation</a>
+                                <a class="btn btn-secondary btn-lg px-4 me-sm-3" href="#api">API Use</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
+        </header> -->
+ 
+        <!-- LoginModal -->
+        <div class="modal fade" id="LoginModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title fs-5" id="LoginModal">
+                Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body" id="">
+                <form action="">
+                    <div class="mb-3">
+                        <label for="input-email" class="form-label">Email address</label>
+                            <input ref={inputEmail} type="email" class="form-control" id="input-email"/>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="input-password" class="form-label">Password</label>
+                            <input ref={inputPassword} type="password" class="form-control" id="input-password"/>
+                    </div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onClick={handleLogin}>Login</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <!-- RegisterModal -->
+          <div class="modal fade" id="RegisterModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title fs-5" id="RegisterModal">
+                Register</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body" id="">
+                <form action="">
+                <div class="mb-3">
+                        <label for="input-name" class="form-label">Name</label>
+                            <input ref={inputName} type="text" class="form-control" id="input-name"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="input-email" class="form-label">Email address</label>
+                            <input ref={inputEmail} type="email" class="form-control" id="input-email"/>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="input-password" class="form-label">Password</label>
+                            <input ref={inputPassword} type="password" class="form-control" id="input-password"/>
+                    </div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onClick={handleLogin}>Register</button>
+              </div>
+            </div>
+          </div>
+        </div>
+

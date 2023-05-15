@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/app', function () {
     return view('landingpage');
 });
+
+Route::get('/login', function () {
+    return view('login');
+});
