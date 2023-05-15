@@ -1,50 +1,55 @@
   <!-- Responsive navbar-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="#!"><span class="text-warning">Livestock</span>API</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
+
+
+  
+<section class="header">
+  <div class="container">
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container-fluid">
+  <a class="navbar-brand" href="/app">Livestock API</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+          <li class="nav-item">
+               <a class="nav-link act" href="#about">About</a>
+           </li>
                         <li class="nav-item">
-                          <a class="nav-link active" href="#about">About</a>
+                          <a class="nav-link act" href="#service">Service</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#service">Service</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#team">Team</a>
+                          <a class="nav-link act" href="#team">Team</a>
                         </li>
                     </ul>
-                       <div class="dropdown ms-auto mb-2 mb-lg-0">
-                <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="dropdown ms-auto mb-2 mb-lg-0">
+                         <button class="btn btn-white dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                              Akun
-                  </button>
-                        <ul class="dropdown-menu ">
+                       </button>
+                        <ul class="dropdown-menu">
                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#LoginModal" >Login</a></li>
                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#RegisterModal" >Register</a></li>
                         </ul>
-                      </div>
-                </div>
-            </div>
-        </nav>
-        <!-- Header-->
-        <!-- <header class="bg-light py-5">
-            <div class="container px-5">
-                <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="text-center my-5">
-                            <h1 class="display-5 fw-bolder text-black mb-2">Present your business in a whole new way</h1>
-                            <p class="lead text-black-50 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
-                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                <a class="btn btn-secondary btn-lg px-4 me-sm-3" href="#documentation">Documentation</a>
-                                <a class="btn btn-secondary btn-lg px-4 me-sm-3" href="#api">API Use</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header> -->
- 
+                       </div>
+              
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+
+    <div class="middle">
+      <h1 class="text-white fw-bold display-3">We Help you to find <span class="theme-text">a Livestock in Indonesia</span></h1>
+    </div>
+
+  </div>
+  <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#fff" fill-opacity="1" d="M0,128L48,128C96,128,192,128,288,154.7C384,181,480,235,576,240C672,245,768,203,864,192C960,181,1056,203,1152,208C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+  </path>
+</svg>
+</section>
+
         <!-- LoginModal -->
         <div class="modal fade" id="LoginModal" tabindex="-1">
           <div class="modal-dialog">
@@ -113,4 +118,6 @@
             </div>
           </div>
         </div>
+
+      
 
