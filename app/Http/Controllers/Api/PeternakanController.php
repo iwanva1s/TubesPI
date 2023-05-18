@@ -38,7 +38,7 @@ class PeternakanController extends Controller
     {
 
         $validator = Validator::make($request->all(),[
-            'provinsi_peternakan' => 'required|string|max:200',
+            'id_provinsi' => 'required|integer|max:38',
             'alamat_peternakan' => 'required|string|max:200',
             'nama_peternakan' => 'required|string|max:200',
             'no_telp' => 'required|max:200'
@@ -54,7 +54,7 @@ class PeternakanController extends Controller
         }else{
 
             $peternakan = Peternakan::create([
-                'provinsi_peternakan' => $request->provinsi_peternakan,
+                'id_provinsi' => $request->id_provinsi,
                 'alamat_peternakan' => $request->alamat_peternakan,
                 'nama_peternakan' => $request->nama_peternakan,
                 'no_telp' => $request->no_telp
@@ -124,7 +124,7 @@ class PeternakanController extends Controller
     public function update(Request $request, int $id)
     {
         $validator = Validator::make($request->all(),[
-            'provinsi_peternakan' => 'required|string|max:200',
+            'id_provinsi' => 'required|integer|max:200',
             'alamat_peternakan' => 'required|string|max:200',
             'nama_peternakan' => 'required|string|max:200',
             'no_telp' => 'required|max:200'
@@ -144,8 +144,7 @@ class PeternakanController extends Controller
             if($peternakan){
 
                 $peternakan->update([
-                    'provinsi_peternakan' => $request->provinsi_peternakan,
-
+                    'id_provinsi' => $request->id_provinsi,
                     'alamat_peternakan' => $request->alamat_peternakan,
                     'nama_peternakan' => $request->nama_peternakan,
                     'no_telp' => $request->no_telp
