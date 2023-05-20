@@ -5,8 +5,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\HewanController;
 use App\Http\Controllers\Api\ProdukController;
 use App\Http\Controllers\Api\PeternakanController;
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,10 +18,12 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
-    });
+});
 
-Route::post('/register',[AuthController::class, 'register']);
-Route::post('/login',[AuthController::class, 'login']);
+    Route::post('/register',[AuthController::class, 'register']);
+    Route::post('/login',[AuthController::class, 'login']);
+    
+
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     
