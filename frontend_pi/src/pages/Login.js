@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "react";
 import swal from 'sweetalert';
 
 async function loginUser(credentials) {
@@ -33,7 +32,7 @@ export default function Login() {
           .then((value) => {
             localStorage.setItem('token', response['token']);
             localStorage.setItem('user', JSON.stringify(response['user']));
-            window.location.href = "/user";
+            window.location.href = "/";
           });
         } else {
           swal("Failed", response.message, "error");

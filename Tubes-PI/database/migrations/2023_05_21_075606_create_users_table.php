@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function ($table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->string('api_token', 80)->after('password')
-                                ->unique()
-                                ->nullable()
-                                ->default(null);
+            ->unique()
+            ->nullable()
+            ->default(null);
         });
     }
 
