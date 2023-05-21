@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Regis from './pages/Regis';
 import Search from './pages/Search';
-import Datapeternakan from './pages/Peternakan';
+import Peternakan from './pages/Peternakan';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -28,7 +28,7 @@ function App() {
           <Route path="/regis"  component={Regis}/>
         </Switch>
         {/* <About /> */}
-        <Footer />
+        {/* <Footer /> */}
       </Router>
 
     </div>
@@ -43,7 +43,7 @@ function App() {
         <Navbar2 />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/peternakan"  component={Datapeternakan} />
+          <Route path="/peternakan"  component={Peternakan} />
           <Route path="/search"  component={Search} />
           <Route path="/login"  component={Login} />
         </Switch>

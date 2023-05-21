@@ -47,7 +47,7 @@ export default function Login() {
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600 max-w">
             Or 
-            <a href="/regis" class="font-medium text-blue-600 hover:text-blue-500"> create an account
+            <a href="/regis" class="font-medium text-emerald-500 hover:text-emerald-400"> create an account
             </a>
         </p>
     </div>
@@ -80,7 +80,7 @@ export default function Login() {
 
                 <div>
                     <button type="submit"
-                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-500 hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
                         Sign up
                     </button>

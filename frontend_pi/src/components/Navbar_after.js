@@ -20,7 +20,8 @@ function Navbar2() {
             <div class="relative flex h-16 justify-between">
                 <div class="flex flex-1 items-stretch justify-start">
                     <a class="flex flex-shrink-0 items-center" href="/">
-                        <img class="block h-12 w-auto" src="https://www.svgrepo.com/show/501888/donut.svg" />
+                        <img class="block h-12 w-auto" src="" />
+                        <p class="text-orange-500 hover:text-emerald-400 text-lg font-medium">PeternaKu</p>
                     </a>
                 </div>
                 <div class="flex-shrink-0 flex px-2 py-3 items-center space-x-8">

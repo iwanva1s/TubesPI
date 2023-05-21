@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function Search() {
 
+
   return (
     <section>
      
@@ -30,7 +31,7 @@ export default function Search() {
 
             <div class="flex items-center transition-all opacity-1 valid:"><span
                     class="text-sm font-semibold whitespace-nowrap truncate mx-auto">
-                    Filter
+                    Search
                 </span>
             </div>
 
