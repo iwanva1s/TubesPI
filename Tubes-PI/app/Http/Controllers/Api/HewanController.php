@@ -38,7 +38,7 @@ class HewanController extends Controller
             'nama_hewan' => 'required|string|max:200',
             'jenis_hewan' => 'required|string|max:200',
             'berat_hewan' => 'required|int',
-            'harga_hewan' => 'required|float',
+            'harga_hewan' => 'required|int',
             'id_peternakan' => 'required|int'
         ]);
 
@@ -125,7 +125,7 @@ class HewanController extends Controller
             'nama_hewan' => 'required|string|max:200',
             'jenis_hewan' => 'required|string|max:200',
             'berat_hewan' => 'required|int',
-            'harga_hewan' => 'required|float',
+            'harga_hewan' => 'required|int',
             'id_peternakan' => 'required|int'
         ]);
 

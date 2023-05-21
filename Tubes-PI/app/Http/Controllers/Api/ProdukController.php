@@ -38,7 +38,7 @@ class ProdukController extends Controller
             'nama_produk' => 'required|string|max:200',
             'jenis_produk' => 'required|string|max:200',
             'berat_produk' => 'required|int',
-            'harga_produk' => 'required|float',
+            'harga_produk' => 'required|int',
             'id_peternakan' => 'required|int'
         ]);
 
@@ -125,7 +125,7 @@ class ProdukController extends Controller
             'nama_produk' => 'required|string|max:200',
             'jenis_produk' => 'required|string|max:200',
             'berat_produk' => 'required|int',
-            'harga_produk' => 'required|float',
+            'harga_produk' => 'required|int',
             'id_peternakan' => 'required|int'
         ]);
 
