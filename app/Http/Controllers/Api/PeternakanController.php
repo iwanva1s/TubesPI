@@ -280,5 +280,26 @@ class PeternakanController extends Controller
     ],200 );
     }
     
+    public function pet_in_pro($nama_pro)
+    {
+    // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
+    $data = DB::table('tbl_peternakan')
+                ->join('tbl_provinsi', 'tbl_provinsi.id', '=', 'tbl_peternakan.id_provinsi')
+                ->select('tbl_peternakan.id',
+                        'tbl_peternakan.nama_peternakan',
+                        'tbl_peternakan.alamat_peternakan',
+                        'tbl_peternakan.no_telp',
+                        'tbl_provinsi.id',
+                        'tbl_provinsi.nama_provinsi'
+                        )
+                ->where('tbl_provinsi.nama_provinsi','LIKE','%'.$nama_pro.'%')
+                ->get();
+
+    // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'peternakan' => $data
+    ],200 );
+    }
 
 }

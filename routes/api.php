@@ -67,6 +67,8 @@ Route::get('pet/{id_pet}',[PeternakanController::class, 'gab1_id_pet']);
 Route::get('pet_pro',[PeternakanController::class, 'pet_pro']);
 // data semua peternakan dalam sebuah daerah
 Route::get('pet_pro/{id_pro}',[PeternakanController::class, 'pet_pro2']);
+// data semua peternakan dalam sebuah daerah berdasarkan nama
+Route::get('pet_in_pro/{nama_pro}',[PeternakanController::class, 'pet_in_pro']);
 
 // logout
 Route::post('/logout',[AuthController::class, 'logout']);
