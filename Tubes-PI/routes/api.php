@@ -25,7 +25,7 @@ Route::post('/login',[AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     
-});
+
 // API untuk tabel tbl_peternakan
 Route::get('peternakan',[PeternakanController::class, 'index']);
 Route::post('peternakan',[PeternakanController::class, 'store']);
@@ -69,7 +69,7 @@ Route::get('pet_pro/{id_pro}',[PeternakanController::class, 'pet_pro2']);
 // logout
 Route::post('/logout',[AuthController::class, 'logout']);
 
-
+});
 
 // Halaman Dokumentasi
 
