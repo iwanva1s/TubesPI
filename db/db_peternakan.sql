@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Bulan Mei 2023 pada 11.41
+-- Waktu pembuatan: 24 Bulan Mei 2023 pada 03.20
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -127,7 +127,7 @@ CREATE TABLE `tbl_hewan` (
   `jenis_hewan` varchar(200) NOT NULL,
   `berat_hewan` int(11) NOT NULL,
   `harga_hewan` double(12,2) NOT NULL,
-  `id_peternakan` int(10) UNSIGNED NOT NULL,
+  `id_peternakan` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -137,11 +137,10 @@ CREATE TABLE `tbl_hewan` (
 --
 
 INSERT INTO `tbl_hewan` (`id`, `nama_hewan`, `jenis_hewan`, `berat_hewan`, `harga_hewan`, `id_peternakan`, `created_at`, `updated_at`) VALUES
-(1, 'Sapi Brahman', 'sapi', 600, 38900000.00, 1, NULL, NULL),
+(1, 'sapi_test', 'sapi', 123, 123445.00, 1, NULL, '2023-05-18 05:00:17'),
 (2, 'Sapi Simental', 'sapi', 560, 54200000.00, 2, NULL, NULL),
 (3, 'Sapi Limosin', 'sapi', 450, 30400000.00, 3, NULL, NULL),
 (4, 'Sapi Brahman Cross', 'sapi', 500, 60300000.00, 4, NULL, NULL),
-(5, 'Sapi Ongole', 'sapi', 490, 44300000.00, 5, NULL, NULL),
 (6, 'Sapi Peranakan Ongole (PO)', 'sapi', 560, 42800000.00, 6, NULL, NULL),
 (7, 'Sapi Bali', 'sapi', 450, 63100000.00, 7, NULL, NULL),
 (8, 'Sapi Madura', 'sapi', 420, 31600000.00, 8, NULL, NULL),
@@ -497,7 +496,8 @@ INSERT INTO `tbl_hewan` (`id`, `nama_hewan`, `jenis_hewan`, `berat_hewan`, `harg
 (358, 'Kambing Etawa', 'kambing', 62, 350000.00, 208, NULL, NULL),
 (359, 'Kambing Jawarandu', 'kambing', 60, 3870000.00, 209, NULL, NULL),
 (360, 'Kambing Katjang', 'kambing', 37, 6060000.00, 210, NULL, NULL),
-(361, 'Kambing Samosir', 'kambing', 51, 4020000.00, 211, NULL, NULL);
+(361, 'Kambing Samosir', 'kambing', 51, 4020000.00, 211, NULL, NULL),
+(362, 'sapi_test1', 'sapi', 123, 1234567.00, 2, '2023-05-18 04:41:23', '2023-05-18 04:41:23');
 
 -- --------------------------------------------------------
 
@@ -507,7 +507,7 @@ INSERT INTO `tbl_hewan` (`id`, `nama_hewan`, `jenis_hewan`, `berat_hewan`, `harg
 
 CREATE TABLE `tbl_peternakan` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_provinsi` int(10) UNSIGNED NOT NULL,
+  `id_provinsi` int(10) UNSIGNED DEFAULT NULL,
   `alamat_peternakan` varchar(200) NOT NULL,
   `nama_peternakan` varchar(200) NOT NULL,
   `no_telp` varchar(200) DEFAULT NULL,
@@ -520,7 +520,6 @@ CREATE TABLE `tbl_peternakan` (
 --
 
 INSERT INTO `tbl_peternakan` (`id`, `id_provinsi`, `alamat_peternakan`, `nama_peternakan`, `no_telp`, `created_at`, `updated_at`) VALUES
-(1, 4, 'Jl. Raya Blotongan No. 123', 'ABON ABADI', '0298 - 327646', NULL, NULL),
 (2, 18, 'Jl. Jend Sudirman No. 339', 'ABON JUARA JUARA FOOD INDUSTRI', '0298 - 324060', NULL, NULL),
 (7, 10, 'Jl. Raya Margaluyu No. 402', 'ANDHIKA PAKAN TERNAK,CV', '0265 - 311489', NULL, NULL),
 (8, 12, 'Jl. Jababeka Ii Tob Blok C No.16 V Kawasan Indi Jababeka I', 'ARLENE JAYAMANDIRI, PT', '021 - 893544', NULL, NULL),
@@ -545,7 +544,167 @@ INSERT INTO `tbl_peternakan` (`id`, `id_provinsi`, `alamat_peternakan`, `nama_pe
 (46, 28, 'Jl. Recobarong Iii/41', 'HARYONO', '0355 - 775559', NULL, NULL),
 (48, 21, 'Jl. Raya Ciruas Petir Kp. Lebak', 'HIBER JAYA', '0254 - 283095', NULL, NULL),
 (50, 27, 'Jl. Toyogiri', 'INDO MURAYAMA PRES & DIES INDUSTRI, PT', '021 - 880744', NULL, NULL),
-(51, 6, 'Jl. Raya Blotongan No. 123', 'ABON ABADI', '0298 - 327646', NULL, NULL);
+(51, 6, 'Jl. Raya Blotongan No. 123', 'ABON ABADI', '0298 - 327646', NULL, NULL),
+(52, NULL, 'makan', 'test', '01294129412', '2023-05-18 04:24:34', '2023-05-18 04:24:34'),
+(53, NULL, 'Jakarta', 'Test2', '2390420334', '2023-05-18 04:30:41', '2023-05-18 04:30:41'),
+(54, 29, 'Karto Darmo', 'AGUS SP', NULL, NULL, NULL),
+(55, 1, 'Jl. Raya Sigandu', 'AJ FILET', NULL, NULL, NULL),
+(56, 7, 'Wonosari Tengah Raya', 'AL BAROKAH CV', NULL, NULL, NULL),
+(57, 26, 'Jl. Raya Margaluyu No. 402', 'ANDHIKA PAKAN TERNAK,CV', '0265 - 311489', NULL, NULL),
+(58, 13, 'Jl. Jababeka Ii Tob Blok C No.16 V Kawasan Indi Jababeka I', 'ARLENE JAYAMANDIRI, PT', '021 - 893544', NULL, NULL),
+(59, 12, 'Kampung Kalurahan', 'ASIA AFRIKA, PT', '021 - 982896', NULL, NULL),
+(60, 23, 'Desa Krembung Rt.07/04', 'AYAM GORENG ARIFIN', '031 - 885023', NULL, NULL),
+(61, 36, 'Jl. Cijeungjing', 'AYAM POTONG BAROKAH', NULL, NULL, NULL),
+(62, 4, 'Kp. Setiajaya', 'AYAM POTONG CEMARA', NULL, NULL, NULL),
+(63, 28, 'Perum Pesona Rajawali', 'AYUDYA JAYA ABADI, CV', '0361 -', NULL, NULL),
+(64, 12, 'Jl. Bumi Mas Raya No. 5 Kawasan Industri Cikupamas', 'BANGKIT SETIA SENTOSA PRIMATAMA, PT', '021 - 594030', NULL, NULL),
+(65, 31, 'Jl. Cantiga Petir Cipondoh', 'BAROKAH FOOD, UD', NULL, NULL, NULL),
+(66, 25, 'Jl. Raya Randusari Nepen Km. 2', 'CAHAYA GUNUNG FOODS, PT', NULL, NULL, NULL),
+(67, 31, 'Jl. A.yani Km. 13', 'CAKRA PERKASA JAYAMULIA, PT', '0511 - 422042', NULL, NULL),
+(68, 6, 'Jl. Raya Jakarta Bogor Km. 51', 'CALVIN METAL PRODUCTS, PT', '021 - 867053', NULL, NULL),
+(69, 18, 'Desa Tlajung Udik', 'CALVIN METAL PRODUCTS, PT', '021 - 867053', NULL, NULL),
+(70, 25, 'Jl. Industri Iv Kaw. Modern Industri Kav. 6-8', 'CHAROEN POKHPAND INDONESIA, PT', '0254 - 402628', NULL, NULL),
+(71, 23, 'Jl. Ir Sutami Km. 15', 'CHAROEN POKPHAND INDONESIA FEEDMILL LA', '0721 - 350602', NULL, NULL),
+(72, 24, 'Jl. Berbek Industri No. 1 No. 24 Berbek', 'CHAROEN POKPHAND INDONESIA TBK, PT', '031 -', NULL, NULL),
+(73, 22, 'Jl. Pattimura Km. 1 Kutowinangun Lor', 'CHAROEN POKPHAND INDONESIA, PT', '0298 - 327352', NULL, NULL),
+(74, 25, 'Dusun V Klumpang Kampung', 'CIOMAS ADI SATWA, PT', NULL, NULL, NULL),
+(75, 9, 'Jl. Raya Kaba Kaba', 'CIOMAS ADISATWA BALI, PT', NULL, NULL, NULL),
+(76, 8, 'Jl. Raya Sadang-subang Km 14', 'CIOMAS ADISATWA, PT', NULL, NULL, NULL),
+(77, 11, 'Jl. Patimura Km. 6', 'CIOMAS ADISATWA, PT', '0298 - 342092', NULL, NULL),
+(78, 17, 'Desa Semambung', 'CIOMAS INDONESIA, PT/ CIOMAS ADI SATWA', '031 - 898629', NULL, NULL),
+(79, 3, 'Jl. Talaga Mas Raya No. 29', 'CITRA GUNA LESTARI, PT', '021 - 594036', NULL, NULL),
+(80, 28, 'Kp. Setia Jaya', 'DAGING AYAM CEMARA', NULL, NULL, NULL),
+(81, 16, 'Dusun Penampan Wonokoyo', 'DINAMIKA MEGATAMA CITRA', NULL, NULL, NULL),
+(82, 3, 'Desa Luwung', 'DINAMIKA MEGATAMA CITRA, PT', '031 - 848421', NULL, NULL),
+(83, 32, 'Dusun Penampon', 'DINAMIKA MEGATAMA CITRA, PT', NULL, NULL, NULL),
+(84, 4, 'Jl. Dr. Sitanala Tanah Lapang Kecil', 'DOK PERKAPALAN WAYAME, PT', '0911 - 321674', NULL, NULL),
+(85, 15, 'Jl. Surya Lestari Kav 1 - 17b Kaw. Surya Cipta', 'EAST HOPE AGRICULTURE IND., PT', NULL, NULL, NULL),
+(86, 20, 'Jl. Raya Serang Km. 17 No.19 Kawasan Industri Cikupa Mas', 'FEPROTAMA PERTIWI, PT', '021 - 596903', NULL, NULL),
+(87, 7, 'Jl. Raya Sigandu Rt. 01/04', 'FILET IKAN AJ (AYAMTO)', NULL, NULL, NULL),
+(88, 29, 'Jl. Inspeksi Tarum Barat Pekopen Lambang Jaya Tambun', 'GALIH AYAM PARAMENT PT', NULL, NULL, NULL),
+(89, 31, 'Jl. Inspeksi Tarum Barat Pekopen Lambang Jaya Tambun', 'GALIH AYAM PARAMENT, PT', NULL, NULL, NULL),
+(90, 28, 'Jl. Pancasenggang/ Kp. Rancasenggang', 'GAYAM', NULL, NULL, NULL),
+(91, 37, 'Jl. Raya Tulangan', 'GELANG TANI, CV', NULL, NULL, NULL),
+(92, 19, 'Jl. Raya Gondek 1 A', 'GEMILANG INTI SUKSES, PT', NULL, NULL, NULL),
+(93, 37, 'Dk Baros Rt 2/ Rw 8', 'GEMILANG SETIA SEJAHTERA, PT', NULL, NULL, NULL),
+(94, 15, 'Jl. Setia Budi Timur 28', 'HARAPAN AYAM POTONG', '0821 - 413210', NULL, NULL),
+(95, 14, 'Jl. Hati Murni', 'HARCO, UD', NULL, NULL, NULL),
+(96, 9, 'Jl. Recobarong Iii/41', 'HARYONO', '0355 - 775559', NULL, NULL),
+(97, 19, 'Kawasan Industri Lippo Cikarang Blok A E-52', 'HENPRAKAYAMA', NULL, NULL, NULL),
+(98, 37, 'Jl. Raya Ciruas Petir Kp. Lebak', 'HIBER JAYA', '0254 - 283095', NULL, NULL),
+(99, 13, 'Jalan Pangeran Ayin', 'INDFUSTRI KOPI CAP AYAM, PT', NULL, NULL, NULL),
+(100, 29, 'Jl. Toyogiri', 'INDO MURAYAMA PRES & DIES INDUSTRI, PT', '021 - 880744', NULL, NULL),
+(101, 32, 'Jl. Raya Blotongan No. 123', 'ABON ABADI', '0298 - 327646', NULL, NULL),
+(102, 5, 'Jl. Jend Sudirman No. 339', 'ABON JUARA JUARA FOOD INDUSTRI', '0298 - 324060', NULL, NULL),
+(103, 19, 'Jl. Bhumimas Raya Desa Talaga', 'ADIL MART, PT', NULL, NULL, NULL),
+(104, 8, 'Karto Darmo', 'AGUS SP', NULL, NULL, NULL),
+(105, 29, 'Jl. Raya Sigandu', 'AJ FILET', NULL, NULL, NULL),
+(106, 4, 'Wonosari Tengah Raya', 'AL BAROKAH CV', NULL, NULL, NULL),
+(107, 38, 'Jl. Raya Margaluyu No. 402', 'ANDHIKA PAKAN TERNAK,CV', '0265 - 311489', NULL, NULL),
+(108, 10, 'Jl. Jababeka Ii Tob Blok C No.16 V Kawasan Indi Jababeka I', 'ARLENE JAYAMANDIRI, PT', '021 - 893544', NULL, NULL),
+(109, 15, 'Kampung Kalurahan', 'ASIA AFRIKA, PT', '021 - 982896', NULL, NULL),
+(110, 21, 'Desa Krembung Rt.07/04', 'AYAM GORENG ARIFIN', '031 - 885023', NULL, NULL),
+(111, 5, 'Jl. Cijeungjing', 'AYAM POTONG BAROKAH', NULL, NULL, NULL),
+(112, 17, 'Kp. Setiajaya', 'AYAM POTONG CEMARA', NULL, NULL, NULL),
+(113, 1, 'Perum Pesona Rajawali', 'AYUDYA JAYA ABADI, CV', '0361 -', NULL, NULL),
+(114, 8, 'Jl. Bumi Mas Raya No. 5 Kawasan Industri Cikupamas', 'BANGKIT SETIA SENTOSA PRIMATAMA, PT', '021 - 594030', NULL, NULL),
+(115, 15, 'Jl. Cantiga Petir Cipondoh', 'BAROKAH FOOD, UD', NULL, NULL, NULL),
+(116, 26, 'Jl. Raya Randusari Nepen Km. 2', 'CAHAYA GUNUNG FOODS, PT', NULL, NULL, NULL),
+(117, 17, 'Jl. A.yani Km. 13', 'CAKRA PERKASA JAYAMULIA, PT', '0511 - 422042', NULL, NULL),
+(118, 16, 'Jl. Raya Jakarta Bogor Km. 51', 'CALVIN METAL PRODUCTS, PT', '021 - 867053', NULL, NULL),
+(119, 18, 'Desa Tlajung Udik', 'CALVIN METAL PRODUCTS, PT', '021 - 867053', NULL, NULL),
+(120, 17, 'Jl. Industri Iv Kaw. Modern Industri Kav. 6-8', 'CHAROEN POKHPAND INDONESIA, PT', '0254 - 402628', NULL, NULL),
+(121, 25, 'Jl. Ir Sutami Km. 15', 'CHAROEN POKPHAND INDONESIA FEEDMILL LA', '0721 - 350602', NULL, NULL),
+(122, 18, 'Jl. Berbek Industri No. 1 No. 24 Berbek', 'CHAROEN POKPHAND INDONESIA TBK, PT', '031 -', NULL, NULL),
+(123, 6, 'Jl. Pattimura Km. 1 Kutowinangun Lor', 'CHAROEN POKPHAND INDONESIA, PT', '0298 - 327352', NULL, NULL),
+(124, 6, 'Dusun V Klumpang Kampung', 'CIOMAS ADI SATWA, PT', NULL, NULL, NULL),
+(125, 27, 'Jl. Raya Kaba Kaba', 'CIOMAS ADISATWA BALI, PT', NULL, NULL, NULL),
+(126, 37, 'Jl. Raya Sadang-subang Km 14', 'CIOMAS ADISATWA, PT', NULL, NULL, NULL),
+(127, 21, 'Jl. Patimura Km. 6', 'CIOMAS ADISATWA, PT', '0298 - 342092', NULL, NULL),
+(128, 16, 'Desa Semambung', 'CIOMAS INDONESIA, PT/ CIOMAS ADI SATWA', '031 - 898629', NULL, NULL),
+(129, 9, 'Jl. Talaga Mas Raya No. 29', 'CITRA GUNA LESTARI, PT', '021 - 594036', NULL, NULL),
+(130, 7, 'Kp. Setia Jaya', 'DAGING AYAM CEMARA', NULL, NULL, NULL),
+(131, 6, 'Dusun Penampan Wonokoyo', 'DINAMIKA MEGATAMA CITRA', NULL, NULL, NULL),
+(132, 33, 'Desa Luwung', 'DINAMIKA MEGATAMA CITRA, PT', '031 - 848421', NULL, NULL),
+(133, 6, 'Dusun Penampon', 'DINAMIKA MEGATAMA CITRA, PT', NULL, NULL, NULL),
+(134, 24, 'Jl. Dr. Sitanala Tanah Lapang Kecil', 'DOK PERKAPALAN WAYAME, PT', '0911 - 321674', NULL, NULL),
+(135, 20, 'Jl. Surya Lestari Kav 1 - 17b Kaw. Surya Cipta', 'EAST HOPE AGRICULTURE IND., PT', NULL, NULL, NULL),
+(136, 11, 'Jl. Raya Serang Km. 17 No.19 Kawasan Industri Cikupa Mas', 'FEPROTAMA PERTIWI, PT', '021 - 596903', NULL, NULL),
+(137, 37, 'Jl. Raya Sigandu Rt. 01/04', 'FILET IKAN AJ (AYAMTO)', NULL, NULL, NULL),
+(138, 32, 'Jl. Inspeksi Tarum Barat Pekopen Lambang Jaya Tambun', 'GALIH AYAM PARAMENT PT', NULL, NULL, NULL),
+(139, 9, 'Jl. Inspeksi Tarum Barat Pekopen Lambang Jaya Tambun', 'GALIH AYAM PARAMENT, PT', NULL, NULL, NULL),
+(140, 30, 'Jl. Pancasenggang/ Kp. Rancasenggang', 'GAYAM', NULL, NULL, NULL),
+(141, 24, 'Jl. Raya Tulangan', 'GELANG TANI, CV', NULL, NULL, NULL),
+(142, 37, 'Jl. Raya Gondek 1 A', 'GEMILANG INTI SUKSES, PT', NULL, NULL, NULL),
+(143, 1, 'Dk Baros Rt 2/ Rw 8', 'GEMILANG SETIA SEJAHTERA, PT', NULL, NULL, NULL),
+(144, 37, 'Jl. Setia Budi Timur 28', 'HARAPAN AYAM POTONG', '0821 - 413210', NULL, NULL),
+(145, 22, 'Jl. Hati Murni', 'HARCO, UD', NULL, NULL, NULL),
+(146, 32, 'Jl. Recobarong Iii/41', 'HARYONO', '0355 - 775559', NULL, NULL),
+(147, 13, 'Kawasan Industri Lippo Cikarang Blok A E-52', 'HENPRAKAYAMA', NULL, NULL, NULL),
+(148, 30, 'Jl. Raya Ciruas Petir Kp. Lebak', 'HIBER JAYA', '0254 - 283095', NULL, NULL),
+(149, 20, 'Jalan Pangeran Ayin', 'INDFUSTRI KOPI CAP AYAM, PT', NULL, NULL, NULL),
+(150, 23, 'Jl. Toyogiri', 'INDO MURAYAMA PRES & DIES INDUSTRI, PT', '021 - 880744', NULL, NULL),
+(151, 34, 'Pesisir Prenduan', 'ABD HADI', NULL, NULL, NULL),
+(152, 33, 'Pengaletan Rt.04/06', 'ABDUL AZIS', '852325', NULL, NULL),
+(153, 11, 'Jalan Gajah Mada Kompleks Tpi', 'AGAPE CV', NULL, NULL, NULL),
+(154, 28, 'jl.Taman Mahardika No.28 Mumbul', 'AGRO MINA DEWATA, CV', '777292', NULL, NULL),
+(155, 15, 'jl.Gatot Subroto Pondok Batu', 'AGUNG SUMATERA SAMUDERA ABADI, PT', NULL, NULL, NULL),
+(156, 30, 'jl.Raya Sigandu', 'AJ FILET', NULL, NULL, NULL),
+(157, 11, 'jl.Bomo Rejosari Rt01/rw2', 'AJI/YULIATI, KRUPUK', '813364', NULL, NULL),
+(158, 34, 'Kelurahan Sagerat', 'ALAM BARU RECORD, PT', '812897', NULL, NULL),
+(159, 14, 'jl.Rungkut Industri Ii/25', 'ALAM JAYA, PT', NULL, NULL, NULL),
+(160, 13, 'jl.Demaga Timur Transit 19 Muara Baru', 'ALAM SAMUDRA, PT', NULL, NULL, NULL),
+(161, 2, 'Madidir Unet', 'ALIANSI, PT', NULL, NULL, NULL),
+(162, 14, 'Kel Madidir Unet', 'ALLIANCE FOOD INDONESIA INTERNATIONAL,', '0438 - 28664', NULL, NULL),
+(163, 22, 'jl.Jeleduk', 'ALSTOM POWER ENERGY SYSTEM PT', '31 - 3292080', NULL, NULL),
+(164, 10, 'jl.Pakar Timur Ii No.109', 'ALUMNI BANDUNG, PT', '022 - 250125', NULL, NULL),
+(165, 1, 'Komplek Ruko Fanindo Blok D No.5', 'ALUSTEEL ENGINEERING INDONESIA, PT', NULL, NULL, NULL),
+(166, 28, 'Desa Tasik Agung No 10', 'ALVIAN PUTRA, UD', NULL, NULL, NULL),
+(167, 2, 'jl.Raya Bulu Sidokare', 'AMIN JAYA, UD', NULL, NULL, NULL),
+(168, 6, 'jl.Komp Pps Samudra', 'AMO (ABADI MAKMUR OCEAN), PT', '0401 - 312960', NULL, NULL),
+(169, 38, 'Dusun Kalimati', 'ANANTA PRATAMA, UD', NULL, NULL, NULL),
+(170, 16, 'jl.Joyoboyo No.05', 'ANDALAS, UD', '0333 - 423705', NULL, NULL),
+(171, 15, 'Dusun Bancang Rt.03 Rw.02', 'ANDI JAYA', '878299', NULL, NULL),
+(172, 32, 'jl.Komp Pps Samudra', 'ANDIKA, CV', NULL, NULL, NULL),
+(173, 28, 'jl.Raya Sby Malang Km.38', 'ANEKA TUNA INDONESIA, PT', '0343 - 851361', NULL, NULL),
+(174, 26, 'jl.Gatot Subroto', 'ANGEL FASHION STUDIO, PT', '31 - 8912117', NULL, NULL),
+(175, 32, 'Dukuhmulyo', 'ANI MITRA JAYA', NULL, NULL, NULL),
+(176, 12, 'Mandaran Ii Rt.02/06', 'ANK PUTRA', '0336 - 721276', NULL, NULL),
+(177, 21, 'jl.Jala Iv No.32 Paya Pasir', 'ANUGERAH ALAM, PD', '061 - 685221', NULL, NULL),
+(178, 8, 'Jl Gosamtian Dusun Marbali', 'ANUGERAH BAHARI MANDIRI, CV', NULL, NULL, NULL),
+(179, 37, 'jl.Bambu Runcing No.99', 'ANUGERAH BINTANG CEMERLANG, CV', NULL, NULL, NULL),
+(180, 15, 'jl.Letjen Suprapto', 'ANUGERAH KERAMAT INDAH, PT', NULL, NULL, NULL),
+(181, 15, 'Desa Sobontoro', 'ANUGERAH LAUT (PENGERINGAN IKAN AL AMI', NULL, NULL, NULL),
+(182, 16, 'Dukuh Rembangan Rt.01/03 Tasikagung', 'ANUGERAH MINA RAYA, UD', '813265', NULL, NULL),
+(183, 28, 'jl.Gatot Subroto Komplek Ppn', 'ANUGERAH SARI LAUT, PT', '063 - 24428', NULL, NULL),
+(184, 7, 'Pelabuhan Perikanan Samudera Jakarta Kawasan Dermag', 'ANUGERAH SECO JAYA, PT', '6628039', NULL, NULL),
+(185, 10, 'jl.Metro Tanjung Bunga A.33 Ruko Sumba Opu', 'ANUGERAH SEJATI, CV', NULL, NULL, NULL),
+(186, 6, 'jl.Nunumahu', 'ANUGERAH TEHORU MANISE, PT', NULL, NULL, NULL),
+(187, 5, 'Casagardenia', 'ANUGRAH , UD', NULL, NULL, NULL),
+(188, 26, 'jl.Nambangan No.9', 'ANUGRAH ARTA ABADI, CV', NULL, NULL, NULL),
+(189, 18, 'jl.Raya Jompong', 'ANUGRAH JAYA , UD', '0322 - 662069', NULL, NULL),
+(190, 33, 'Lorong Tanjung Merah', 'ANUGRAH TIMUR MAKMUR, PT', NULL, NULL, NULL),
+(191, 5, 'Dusun Vii Desa Naga Kisar', 'AQUA FARM, PT', '062 - 41918', NULL, NULL),
+(192, 36, 'jl.Tambakaji V No.9', 'AQUAFARM NUSANTARA, PT', NULL, NULL, NULL),
+(193, 25, 'jl.By Pass Ngurah Rai No.92 Xx Pesanggrahan', 'ARABIKATAMA KHATULISTIWA FI, PT', NULL, NULL, NULL),
+(194, 35, 'Desa Warabal', 'ARABIKATAMA KHATULISTIWA FISHING INDUS', '0917 - 21258', NULL, NULL),
+(195, 1, 'jl.Rajasam Dobo', 'ARAFURA FISHING INDUSTRIES, CV', NULL, NULL, NULL),
+(196, 5, 'jl.Muara Baru Ujung Dermaga Transit No 16', 'ARIYA JAYA SANTANG, PT', NULL, NULL, NULL),
+(197, 35, 'Komplek Tpi', 'ARTA JAYA, UD', NULL, NULL, NULL),
+(198, 3, 'jl.Jendral A.h.Nasution', 'ARTA MINA JAYA , PT', NULL, NULL, NULL),
+(199, 17, 'Jln. Ngumban Surbakti', 'HARI JAYA MANDIRI', '0979-12873', NULL, NULL),
+(200, 1, 'samosit', 'MAJU BERSAMA', '0921-42830', NULL, NULL),
+(201, 29, 'Jl. A.yani 129', 'CARMA WIRA JATIM,PT', '0343 - 421714', NULL, NULL),
+(202, 36, 'Jl. Berbek Industri Ii/5', 'FILL SURYA MEGAH,PT', '843197', NULL, NULL),
+(203, 38, 'Jl. Jagalan', 'GUNUNG MAS', NULL, NULL, NULL),
+(204, 6, 'Kedungbungkus Rt. 4/2', 'HEALTH MANUFAKTUR,CV', NULL, NULL, NULL),
+(205, 9, 'Jl. Alianyang', 'KECAP CAP KAMBING', NULL, NULL, NULL),
+(206, 25, 'Jl. Letnan Tukiyat Km. 4 Dusun Kedon', 'KURNIA KULIT ABADI,CV', '0293 - 788287', NULL, NULL),
+(207, 21, 'Jl. Susanto No.8', 'LOKA,PT', NULL, NULL, NULL),
+(208, 11, 'Desa Tanjung Sari', 'RAJAWALI MUSINDO,PT', NULL, NULL, NULL),
+(209, 25, 'Jl. Solo Km. 10 Sorogenen 1 No. 17 Purwomartani Rt. 008 Rw. 002', 'SOLUSKY PT', NULL, NULL, NULL),
+(210, 19, 'Sidorejo Rt. 05 Rw. 04', 'TAMTO MANDIRI ,CV', NULL, NULL, NULL),
+(211, 27, 'Kemirikebo Girikerto Rt. 02 Rw. 07', 'UMSKEY,CV', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -555,8 +714,8 @@ INSERT INTO `tbl_peternakan` (`id`, `id_provinsi`, `alamat_peternakan`, `nama_pe
 
 CREATE TABLE `tbl_produk` (
   `id` int(10) UNSIGNED NOT NULL,
-  `nama_produk` varchar(200) NOT NULL,
-  `jenis_produk` varchar(200) NOT NULL,
+  `nama_produk` varchar(200) DEFAULT NULL,
+  `jenis_produk` varchar(200) DEFAULT NULL,
   `berat_produk` int(11) DEFAULT NULL,
   `harga_produk` double(12,2) DEFAULT NULL,
   `id_peternakan` int(10) UNSIGNED NOT NULL,
@@ -573,7 +732,6 @@ INSERT INTO `tbl_produk` (`id`, `nama_produk`, `jenis_produk`, `berat_produk`, `
 (2, 'Abon Sapi', 'siap jadi', 300, 110000.00, 2, NULL, NULL),
 (3, 'Abon Sapi', 'siap jadi', 300, 40000.00, 3, NULL, NULL),
 (4, 'Abon Sapi', 'siap jadi', 300, 30000.00, 4, NULL, NULL),
-(5, 'Abon Sapi', 'siap jadi', 300, 140000.00, 5, NULL, NULL),
 (6, 'Abon Sapi', 'siap jadi', 300, 130000.00, 6, NULL, NULL),
 (7, 'Bakso Sapi', 'masakan', 300, 40000.00, 7, NULL, NULL),
 (8, 'Bakso Sapi', 'masakan', 300, 110000.00, 8, NULL, NULL),
@@ -729,7 +887,8 @@ INSERT INTO `tbl_produk` (`id`, `nama_produk`, `jenis_produk`, `berat_produk`, `
 (158, 'Kulit Sapi & Kambing/domb Fini', 'daging', 0, 140000.00, 158, NULL, NULL),
 (159, 'Susu Bubuk Kambing Etawa', 'siap jadi', 0, 90000.00, 159, NULL, NULL),
 (160, 'Susu Kambing Bubuk', 'siap jadi', 0, 200000.00, 160, NULL, NULL),
-(161, 'Susu Kambing Bubuk', 'siap jadi', 0, 30000.00, 161, NULL, NULL);
+(161, 'Susu Kambing Bubuk', 'siap jadi', 0, 30000.00, 161, NULL, NULL),
+(162, NULL, NULL, NULL, NULL, 2, '2023-05-18 05:07:55', '2023-05-18 05:07:55');
 
 -- --------------------------------------------------------
 
@@ -933,19 +1092,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `tbl_hewan`
 --
 ALTER TABLE `tbl_hewan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=362;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=363;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_peternakan`
 --
 ALTER TABLE `tbl_peternakan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_produk`
 --
 ALTER TABLE `tbl_produk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_provinsi`
