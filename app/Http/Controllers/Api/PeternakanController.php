@@ -188,7 +188,12 @@ class PeternakanController extends Controller
     // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
     $data = DB::table('tbl_hewan')
                 ->join('tbl_peternakan', 'tbl_hewan.id_peternakan', '=', 'tbl_peternakan.id')
-                ->select('tbl_hewan.id', 'tbl_hewan.nama_hewan', 'tbl_hewan.jenis_hewan', 'tbl_peternakan.nama_peternakan')
+                ->select('tbl_hewan.id',
+                        'tbl_hewan.nama_hewan',
+                        'tbl_hewan.jenis_hewan',
+                        'tbl_hewan.harga_hewan',
+                        'tbl_hewan.berat_hewan',
+                        'tbl_peternakan.nama_peternakan')
                 ->get();
 
     // Mengirimkan data ke view
@@ -203,7 +208,12 @@ class PeternakanController extends Controller
     // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
     $data = DB::table('tbl_hewan')
                 ->join('tbl_peternakan', 'tbl_hewan.id_peternakan', '=', 'tbl_peternakan.id')
-                ->select('tbl_hewan.id', 'tbl_hewan.nama_hewan', 'tbl_hewan.jenis_hewan', 'tbl_peternakan.nama_peternakan')
+                ->select('tbl_hewan.id',
+                        'tbl_hewan.nama_hewan',
+                        'tbl_hewan.jenis_hewan', 
+                        'tbl_hewan.harga_hewan',
+                        'tbl_hewan.berat_hewan',
+                        'tbl_peternakan.nama_peternakan')
                 ->where('tbl_hewan.id','=',$id)
                 ->get();
 
