@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\HewanController;
 use App\Http\Controllers\Api\ProdukController;
 use App\Http\Controllers\Api\PeternakanController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,9 +17,9 @@ use App\Http\Controllers\Api\PeternakanController;
 |
 */
 
-// Route::middleware('auth:sanctum')->group(function () {
-//     Route::post('/logout', [AuthController::class, 'logout']);
-//     });
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    });
 
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
@@ -65,6 +66,10 @@ Route::get('pet/{id_pet}',[PeternakanController::class, 'gab1_id_pet']);
 Route::get('pet_pro',[PeternakanController::class, 'pet_pro']);
 // data semua peternakan dalam sebuah daerah
 Route::get('pet_pro/{id_pro}',[PeternakanController::class, 'pet_pro2']);
+// data semua peternakan dalam sebuah daerah berdasarkan nama
+Route::get('pet_in_pro/{nama_pro}',[PeternakanController::class, 'pet_in_pro']);
+// JANGFAN DI GANGGU
+Route::get('detailsHewanProduk/{id}',[PeternakanController::class, 'detailsHewanProduk']);
 
 // logout
 Route::post('/logout',[AuthController::class, 'logout']);
@@ -72,5 +77,6 @@ Route::post('/logout',[AuthController::class, 'logout']);
 });
 
 // Halaman Dokumentasi
+
 
 

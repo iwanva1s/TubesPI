@@ -8,6 +8,8 @@ import Login from './pages/Login';
 import Regis from './pages/Regis';
 import Search from './pages/Search';
 import Peternakan from './pages/Peternakan';
+import Hewan from './pages/Hewan';
+import Detail from './pages/Detail';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -44,6 +46,8 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/peternakan"  component={Peternakan} />
+          <Route path="/detail/:pid"  component={Detail} />
+          <Route path="/hewan"  component={Hewan} />
           <Route path="/search"  component={Search} />
           <Route path="/login"  component={Login} />
         </Switch>

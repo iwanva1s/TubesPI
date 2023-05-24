@@ -13,7 +13,7 @@ export default function Peternakan() {
         const token = localStorage.getItem('token');
         console.log(token);
         const tokenType = localStorage.getItem('token_type');
-        const response = await fetch('http://localhost:8000/api/peternakan', {
+        const response = await fetch('http://localhost:8000/api/hewan&pet/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

@@ -1,7 +1,7 @@
 import { useState, useEffect} from "react";
 import axios from "axios";
 
-export default function Peternakan() {
+export default function Provinsi() {
 
     const [peternakan, setPeternakan] = useState([]);
     const [mounted, setMounted] = useState(false);
@@ -13,7 +13,7 @@ export default function Peternakan() {
         const token = localStorage.getItem('token');
         console.log(token);
         const tokenType = localStorage.getItem('token_type');
-        const response = await fetch('http://localhost:8000/api/peternakan', {
+        const response = await fetch('http://localhost:8000/api/pet_in_pro/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

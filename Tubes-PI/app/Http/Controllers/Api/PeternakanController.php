@@ -188,7 +188,13 @@ class PeternakanController extends Controller
     // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
     $data = DB::table('tbl_hewan')
                 ->join('tbl_peternakan', 'tbl_hewan.id_peternakan', '=', 'tbl_peternakan.id')
-                ->select('tbl_hewan.id', 'tbl_hewan.nama_hewan', 'tbl_hewan.jenis_hewan', 'tbl_peternakan.nama_peternakan')
+                ->select('tbl_hewan.id',
+                        'tbl_hewan.nama_hewan',
+                        'tbl_hewan.jenis_hewan',
+                        'tbl_hewan.harga_hewan',
+                        'tbl_hewan.berat_hewan',
+                        'tbl_peternakan.nama_peternakan',
+                        'tbl_peternakan.id as id_peternakan',)
                 ->get();
 
     // Mengirimkan data ke view
@@ -203,7 +209,13 @@ class PeternakanController extends Controller
     // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
     $data = DB::table('tbl_hewan')
                 ->join('tbl_peternakan', 'tbl_hewan.id_peternakan', '=', 'tbl_peternakan.id')
-                ->select('tbl_hewan.id', 'tbl_hewan.nama_hewan', 'tbl_hewan.jenis_hewan', 'tbl_peternakan.nama_peternakan')
+                ->select('tbl_hewan.id',
+                        'tbl_hewan.nama_hewan',
+                        'tbl_hewan.jenis_hewan', 
+                        'tbl_hewan.harga_hewan',
+                        'tbl_hewan.berat_hewan',
+                        'tbl_peternakan.nama_peternakan',
+                        'tbl_peternakan.id as id_peternakan',)
                 ->where('tbl_hewan.id','=',$id)
                 ->get();
 
@@ -280,5 +292,61 @@ class PeternakanController extends Controller
     ],200 );
     }
     
+    public function pet_in_pro($nama_pro)
+    {
+    // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
+    $data = DB::table('tbl_peternakan')
+                ->join('tbl_provinsi', 'tbl_provinsi.id', '=', 'tbl_peternakan.id_provinsi')
+                ->select('tbl_peternakan.id as id_peternakan',
+                        'tbl_peternakan.nama_peternakan',
+                        'tbl_peternakan.alamat_peternakan',
+                        'tbl_peternakan.no_telp',
+                        'tbl_provinsi.id',
+                        'tbl_provinsi.nama_provinsi',
+                        )
+                ->where('tbl_provinsi.nama_provinsi','LIKE','%'.$nama_pro.'%')
+                ->get();
+
+    // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'peternakan' => $data
+    ],200 );
+    }
+
+    public function detailsHewanProduk($id)
+    {
+    // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
+    $data = DB::table('tbl_hewan')
+                ->join('tbl_peternakan', 'tbl_hewan.id_peternakan', '=', 'tbl_peternakan.id')
+                ->select('tbl_hewan.id',
+                        'tbl_hewan.nama_hewan',
+                        'tbl_hewan.jenis_hewan', 
+                        'tbl_hewan.harga_hewan',
+                        'tbl_hewan.berat_hewan',
+                        'tbl_peternakan.nama_peternakan',
+                        'tbl_peternakan.id as id_peternakan',)
+                ->where('tbl_peternakan.id','=',$id)
+                ->get();
+    
+    $data2 = DB::table('tbl_produk')
+                ->join('tbl_peternakan', 'tbl_produk.id_peternakan', '=', 'tbl_peternakan.id')
+                ->select('tbl_produk.id',
+                        'tbl_produk.nama_produk',
+                        'tbl_produk.jenis_produk',
+                        'tbl_produk.berat_produk',
+                        'tbl_produk.harga_produk',
+                        'tbl_peternakan.nama_peternakan',
+                        'tbl_peternakan.id as id_peternakan',)
+                ->where('tbl_peternakan.id','=',$id)
+                ->get();
+
+    // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'peternakan' => $data,
+        'produk' => $data2
+    ],200 );
+    }
 
 }

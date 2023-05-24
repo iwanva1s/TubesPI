@@ -27,15 +27,15 @@ export default function Regis () {
       email,
       password
     });
-    console.log(response);
+    console.log(response.success.token);
     if ('token' in response.success) {
         swal("Success", response.success.message, "success", {
           buttons: true,
           timer: 2000,
         })
       .then((value) => {
-        localStorage.setItem('token', response['token']);
-        localStorage.setItem('user', JSON.stringify(response['user']));
+        localStorage.setItem('token', response.success.token);
+        localStorage.setItem('user', JSON.stringify(response.success.user));
         window.location.href = "/";
       });
     } else {
