@@ -52,7 +52,7 @@ export default function Regis () {
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600 max-w">
             Or 
-            <a href="/login" class="font-medium text-emerald-500 hover:text-emerald-400"> login to your account
+            <a href="/login" class="font-medium text-indigo-500 hover:text-indigo-600"> login to your account
             </a>
         </p>
     </div>
@@ -95,9 +95,9 @@ export default function Regis () {
 
                 <div>
                     <button type="submit"
-                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-500 hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
-                        Sign in
+                        Sign Up
                     </button>
                 </div>
             </form>

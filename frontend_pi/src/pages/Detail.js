@@ -6,9 +6,6 @@ export default function Detail({match}) {
 
     const [detailHewan, setDetailHewan] = useState([]);
     const [detailProduk, setDetailProduk] = useState([]);
-    const [mounted, setMounted] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
-    const [namaUser, setNamaUser] = useState();
 
     console.log(match.params.pid);
 
@@ -43,41 +40,122 @@ export default function Detail({match}) {
 
 
     return (
-        <div>
-            <h2>Hewan</h2>
-            <h2>Hewan</h2>
-            <h2>Hewan</h2>
-            <h2>Hewan</h2>
-                {detailHewan.map(detail => (
-                    <div>
-                    <h2>Peternakan : {detail.nama_peternakan}</h2>
-                    <div class="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
-                        
-                        <div class="flex flex-col items-start mt-4">
-                            <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{detail.nama_hewan}</h5>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">Jenis Hewan : {detail.jenis_hewan}</p>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">Harga   : {detail.harga_hewan}</p>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">Berat : {detail.berat_hewan}kg</p>
-                            </a>
-                        </div>
-                    </div>
-                    </div>
-                ))}
+        <>
+    <div class="flex justify-evenly pt-10">
+    {detailHewan.map(detail => (
+    <div class="bg-pink-700 w-80 shadow overflow-hidden sm:rounded-lg ">
 
-            <h2>Produk</h2>
-                {detailProduk.map(detail => (
-                    <div class="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
-                        <div class="flex flex-col items-start mt-4">
-                            <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{detail.nama_produk}</h5>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">Jenis Produk : {detail.jenis_produk}</p>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">Berat   : {detail.berat_produk}</p>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">Harga : {detail.harga_produk}kg</p>
-                            </a>
-                        </div>
-                    </div>
-                ))}
+        <div class="px-4 py-5 sm:px-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-100">
+             {detail.nama_peternakan}
+            </h3>
+            <p class="mt-1 w- text-sm text-gray-50">
+                Details and informations livestock.
+            </p>
         </div>
+    
+        <div class="border-t border-gray-200">
+            <dl>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">
+                        Hewan
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        {detail.nama_hewan}
+                    </dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">
+                        Jenis 
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {detail.jenis_hewan}
+                    </dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">
+                        Bobot
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {detail.berat_hewan} kg
+                    </dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">
+                        Harga
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    Rp {detail.harga_hewan}
+                    </dd>
+                </div>
+                {/* <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">
+                        About
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        To get social media testimonials like these, keep your customers engaged with your social media accounts by posting regularly yourself
+                    </dd>
+                </div> */}
+            </dl>
+        </div>
+    </div>
+    ))}
+    </div>
+
+    {/* Detail Produk */}
+    <div class="flex justify-evenly pt-10">
+    {detailProduk.map(detail => (
+    <div class="bg-lime-700 w-80 shadow overflow-hidden sm:rounded-lg ">
+
+        <div class="px-4 py-5 sm:px-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-100">
+             {detail.nama_peternakan}
+            </h3>
+            <p class="mt-1 text-sm text-gray-50">
+                Details and informations product.
+            </p>
+        </div>
+    
+        <div class="border-t border-gray-200">
+            <dl>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">
+                        Produk
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        {detail.nama_produk}
+                    </dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">
+                        Jenis 
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {detail.jenis_produk}
+                    </dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">
+                        Bobot
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {detail.berat_produk} kg
+                    </dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">
+                        Harga
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    Rp {detail.harga_produk}
+                    </dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+    ))}
+
+</div>
+</> 
     )
 }

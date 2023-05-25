@@ -2,17 +2,29 @@ import React from 'react'
 
 function Footer() {
   return (
-    <footer class="relative bg-blueGray-50 pt-8 pb-6 mt-2">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-wrap items-center md:justify-between justify-center">
-        <div class="w-full md:w-6/12 px-4 mx-auto text-center">
-          <div class="text-sm text-blueGray-500 font-semibold py-1">
-            Made with <a href="https://www.creative-tim.com/product/notus-js" class="text-blueGray-500 hover:text-gray-800" target="_blank">Notus JS</a> by <a href="https://www.creative-tim.com" class="text-blueGray-500 hover:text-blueGray-800" target="_blank"> Creative Tim</a>.
-          </div>
-        </div>
+
+<footer class="bg-white dark:bg-gray-900">
+  
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <div class="md:flex md:justify-center">
+          <div class="mb-6 md:mb-0">
+         
+         
+      
+      <div class="sm:flex sm:items-center sm:justify-center">
+     
+              
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 PeternaKu. All Rights Reserved.
+          </span>
       </div>
     </div>
-  </footer>
+    </div>
+    </div>
+</footer>
+
+
+
   )
 }
 

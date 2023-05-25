@@ -10,11 +10,11 @@ export default function Search() {
     const [namaUser, setNamaUser] = useState();
     const [search, setSearch] =  useState('');
 
-    const getData = async search => {
+    const getData = async ()=> {
         const token = localStorage.getItem('token');
         console.log(token);
         const tokenType = localStorage.getItem('token_type');
-        const response = await fetch('http://localhost:8000/api/pet_in_pro/' + search, {
+        const response = await fetch('http://localhost:8000/api/pet_pro/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export default function Search() {
             setMounted(true);
         }
         else {
-            // getData();
+            getData();
             setNamaUser(localStorage.getItem('name'));
         }
     }, [mounted]);
@@ -64,7 +64,7 @@ export default function Search() {
     </form> */}
 
 
-    <label class="mx-auto mt-40 relative bg-white min-w-sm max-w-2xl flex flex-col md:flex-row items-center justify-top border py-2 px-2 rounded-2xl gap-2 shadow-2xl focus-within:border-gray-300"
+    {/* <label class="mx-auto mt-40 relative bg-white min-w-sm max-w-2xl flex flex-col md:flex-row items-center justify-top border py-2 px-2 rounded-2xl gap-2 shadow-2xl focus-within:border-gray-300"
             for="search-bar">
     <input 
         id="search-bar" 
@@ -80,7 +80,7 @@ export default function Search() {
         
         <div class="relative">
 
-            {/* <!-- Loading animation change opacity to display --> */}
+             <!-- Loading animation change opacity to display -->
             <div
                 class="flex items-center justify-center h-3 w-3 absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 transition-all">
                 <svg class="opacity-0 animate-spin w-full h-full" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -102,9 +102,9 @@ export default function Search() {
         </div>
         
     </button>
-</label> 
+</label>  */}
 
-{peternakan.map(tbl_peternakan => (
+{/* {peternakan.map(tbl_peternakan => (
                     <div class="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
                         <div class="flex flex-col items-start mt-4">
                             <a onClick={() => handleRedirect(tbl_peternakan.id_peternakan)} class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
@@ -115,7 +115,7 @@ export default function Search() {
                             </a>
                         </div>
                     </div>
-                ))}
+                ))} */}
     </section>
   )
 }

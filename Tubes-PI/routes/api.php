@@ -68,7 +68,7 @@ Route::get('pet_pro',[PeternakanController::class, 'pet_pro']);
 Route::get('pet_pro/{id_pro}',[PeternakanController::class, 'pet_pro2']);
 // data semua peternakan dalam sebuah daerah berdasarkan nama
 Route::get('pet_in_pro/{nama_pro}',[PeternakanController::class, 'pet_in_pro']);
-// JANGFAN DI GANGGU
+// Detail Hewan & Produk dari suatu peternakan
 Route::get('detailsHewanProduk/{id}',[PeternakanController::class, 'detailsHewanProduk']);
 
 // logout

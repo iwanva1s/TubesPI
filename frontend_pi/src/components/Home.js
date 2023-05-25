@@ -1,9 +1,88 @@
 import React from 'react'
-import hewann from "../img/hewann.jpg"
+import iconpet from '../img/iconpet.png';
+import iconpet2 from '../img/iconpet2.png';
+import iconpet3 from '../img/iconpet3.png';
 
 function Home() {
   return (
-<section class=" bg-blueGray-200 -mt-30">
+<>
+<section class="bg-center bg-no-repeat bg-[url('https://image.winudf.com/v2/image1/Y29tLmFwcDNkd2FsbHBhcGVyaGQuY293d2FsbHBhcGVyX3NjcmVlbl8wXzE1NjcwMjQ4MTBfMDUy/screen-0.jpg?h=710&fakeurl=1&type=.jpg')] bg-cover bg-gray-400 bg-blend-multiply">
+    <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Find the farm you want to search with us</h1>
+        <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Here at PeternaKu we focus on finding livestock and products from livestock in Indonesia to encourage economic growth.</p>
+        <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+            <a href="/login" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg backdrop-blur-sm bg-white/30 hover:bg-indigo-500 font-semibold hover:text-white py-2 px-4 hover:border-transparent rounded">
+                Get started
+                <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </a> 
+        </div>
+    </div>
+</section>
+
+<section class="m-4 md:m-8 dark:bg-gray-800 dark:text-gray-100">
+<div class="p-8">
+  <div class="flex felx-col items-center justify-center">
+    <span
+      class="rounded-full bg-indigo-500 px-2 py-1 text-white uppercase text-sm"
+    >
+      Feature
+    </span>
+  </div>
+  <h1 class="text-4xl font-medium text-gray-700 text-center mt-6">
+    What do we provide?
+  </h1>
+  <p class="text-center mt-6 text-lg font-light text-gray-500">
+  The search engine that we provide displays some information on a farm.
+  </p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3">
+  <div class="p-8">
+    <div
+      class="bg-indigo-100 rounded-full w-16 h-16 flex justify-center items-center text-indigo-500 shadow-2xl"
+    >
+      <img src={iconpet} class="h-9 mr-0" alt="Icon Pet"/>
+    </div>
+    <h2 class="uppercase mt-6 text-indigo-500 font-medium mb-3">
+      Farm
+    </h2>
+    <p class="font-light text-sm text-gray-500 mb-3">
+    Displays the name and location of the farm you want to search by province.
+    </p>
+  </div>
+
+  <div class="p-8">
+    <div
+      class="bg-green-100 rounded-full w-16 h-16 flex justify-center items-center text-green-500 shadow-2xl"
+    >
+      <img src={iconpet2} class="h-9 mr-0" alt="Icon Pet"/>
+    </div>
+    <h2 class="uppercase mt-6 text-green-500 font-medium mb-3">
+      Livestock
+    </h2>
+    <p class="font-light text-sm text-gray-500 mb-3">
+    Displays livestock equipped with weights and prices from each selected farm.
+    </p>
+  </div>
+  <div class="p-8">
+    <div
+      class="bg-red-100 rounded-full w-16 h-16 flex justify-center items-center text-red-500 shadow-2xl"
+    >
+      <img src={iconpet3} class="h-9 mr-0" alt="Icon Pet"/>
+    </div>
+    <h2 class="uppercase mt-6 text-red-500 font-medium mb-3">
+      Product
+    </h2>
+    <p class="font-light text-sm text-gray-500 mb-3">
+    Displays the types of products available along with weights and prices.
+    </p>
+  </div>
+</div>
+</section>
+
+
+
+{/* <section class=" bg-blueGray-200 -mt-30">
   <div class="container mx-auto px-4">
     <div class="flex flex-wrap">
       <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
@@ -62,7 +141,8 @@ function Home() {
       </div>
     </div>
   </footer>
-</section>
+</section> */}
+</>
 
   )
 }

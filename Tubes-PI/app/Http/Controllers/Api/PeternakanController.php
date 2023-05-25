@@ -254,7 +254,7 @@ class PeternakanController extends Controller
     // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
     $data = DB::table('tbl_peternakan')
                 ->join('tbl_provinsi', 'tbl_provinsi.id', '=', 'tbl_peternakan.id_provinsi')
-                ->select('tbl_peternakan.id',
+                ->select('tbl_peternakan.id as id_peternakan',
                         'tbl_peternakan.nama_peternakan',
                         'tbl_peternakan.alamat_peternakan',
                         'tbl_peternakan.no_telp',
@@ -275,7 +275,7 @@ class PeternakanController extends Controller
     // Mengambil data dari tabel hewan dan peternakan, dan menggabungkannya menggunakan join
     $data = DB::table('tbl_peternakan')
                 ->join('tbl_provinsi', 'tbl_provinsi.id', '=', 'tbl_peternakan.id_provinsi')
-                ->select('tbl_peternakan.id',
+                ->select('tbl_peternakan.id as id_peternakan',
                         'tbl_peternakan.nama_peternakan',
                         'tbl_peternakan.alamat_peternakan',
                         'tbl_peternakan.no_telp',
