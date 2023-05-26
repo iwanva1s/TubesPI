@@ -2,6 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DiagramController;
 use App\Http\Controllers\Api\HewanController;
 use App\Http\Controllers\Api\ProdukController;
 use App\Http\Controllers\Api\PeternakanController;
@@ -74,8 +75,8 @@ Route::get('pet_in_pro/{nama_pro}',[PeternakanController::class, 'pet_in_pro']);
 Route::post('/logout',[AuthController::class, 'logout']);
 
 
-Route::get('all_hewan_in_pro/{provinsi}',[PeternakanController::class, 'all_hewan_in_pro']);
-Route::get('hit_hewan_in_pro/{provinsi}',[PeternakanController::class, 'hit_hewan_in_pro']);
+Route::get('all_hewan_in_pro/{provinsi}',[DiagramController::class, 'all_hewan_in_pro']);
+Route::get('hit_hewan_in_pro/{provinsi}',[DiagramController::class, 'hit_hewan_in_pro']);
 
 // Halaman Dokumentasi
 
