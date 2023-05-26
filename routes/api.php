@@ -74,6 +74,8 @@ Route::get('pet_in_pro/{nama_pro}',[PeternakanController::class, 'pet_in_pro']);
 Route::post('/logout',[AuthController::class, 'logout']);
 
 
+Route::get('all_hewan_in_pro/{provinsi}',[PeternakanController::class, 'all_hewan_in_pro']);
+Route::get('hit_hewan_in_pro/{provinsi}',[PeternakanController::class, 'hit_hewan_in_pro']);
 
 // Halaman Dokumentasi
 
