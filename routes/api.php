@@ -78,8 +78,9 @@ Route::post('/logout',[AuthController::class, 'logout']);
 Route::get('all_hewan_in_pro/{provinsi}',[DiagramController::class, 'all_hewan_in_pro']);
 Route::get('hit_hewan_in_pro/{provinsi}',[DiagramController::class, 'hit_hewan_in_pro']);
 Route::get('hit_pet_in_pro/{provinsi}',[DiagramController::class, 'hit_pet_in_pro']);
-Route::get('test',[DiagramController::class, 'test']);
-Route::get('test2/{provinsi}',[DiagramController::class, 'test2']);
+Route::get('pet_each_pro',[DiagramController::class, 'pet_each_pro']);
+Route::get('pro_in_prov/{provinsi}',[DiagramController::class, 'pro_in_prov']);
+Route::get('pro_each_prov',[DiagramController::class, 'pro_each_prov']);
 
 // Halaman Dokumentasi
 

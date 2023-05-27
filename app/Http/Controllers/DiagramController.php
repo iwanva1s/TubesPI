@@ -97,7 +97,7 @@ class DiagramController extends Controller
     
    } 
     
-   public function test()
+   public function pet_each_pro()
     {
 //    jumlah peternakan yang ada yang ada pada masing provinsi
     
@@ -128,7 +128,7 @@ class DiagramController extends Controller
 
    }
    
-   public function test2($provinsi)
+   public function pro_in_prov($provinsi)
     {
 //    jumlah produk yang berasal pada masing provinsi
     
@@ -148,5 +148,57 @@ class DiagramController extends Controller
     ],200 );
 
    }
+
+
+   public function pro_each_prov()
+   {
+//    jumlah peternakan yang ada yang ada pada masing provinsi
+   
+   for ($i=1; $i < 39; $i++) 
+   { 
+       $j = $i -1;
+
+       $hit_produk = Produk::join('tbl_peternakan', 'tbl_produk.id_peternakan', '=', 'tbl_peternakan.id')
+                    ->join('tbl_provinsi', 'tbl_peternakan.id_provinsi', '=', 'tbl_provinsi.id')
+                    ->select('tbl_produk.id', 'tbl_peternakan.nama_peternakan', 'tbl_provinsi.id')
+                    ->where('tbl_provinsi.id','=',$i)
+                    ->get();                 
+       $pro = $hit_produk ->count();                
+
+
+       $nama_provinsi = Provinsi::select('nama_provinsi')
+                       ->where('id','=',$i)
+                       ->get();  
+       $data[$j]= array($nama_provinsi,$pro) ;
+
+   }
+
+
+   // // Mengirimkan data ke view
+   return response()->json([
+       'status' => 200,
+       'data'=> $data
+   ],200 );
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
