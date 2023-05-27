@@ -77,6 +77,73 @@ class DiagramController extends Controller
         'ikan' => $ikan,
         'kambing' => $kambing,
     ],200 );
-
 }
+
+    public function hit_pet_in_pro($provinsi)
+    {
+//    jumlah peternakan yang ada yang ada pada sebuah provinsi
+    $hit_peternakan = Peternakan::join('tbl_provinsi', 'tbl_provinsi.id', '=', 'tbl_peternakan.id_provinsi')
+                    ->where('tbl_provinsi.nama_provinsi','LIKE','%'.$provinsi.'%')
+                    ->get();
+        
+    $peternakan = $hit_peternakan->count();
+
+    // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'jumlah' => $peternakan,
+    ],200 );
+    
+   } 
+    
+   public function test()
+    {
+//    jumlah peternakan yang ada yang ada pada masing provinsi
+    
+    for ($i=1; $i < 39; $i++) 
+    { 
+        $j = $i -1;
+
+        $hit_peternakan = Peternakan::join('tbl_provinsi', 'tbl_provinsi.id', '=', 'tbl_peternakan.id_provinsi')
+                        ->select('tbl_provinsi.id','tbl_provinsi.nama_provinsi','tbl_peternakan.id')
+                        ->where('tbl_provinsi.id','=',$i)
+                        ->get();                  
+        $prov = $hit_peternakan ->count();                
+
+
+        $nama_provinsi = Provinsi::select('nama_provinsi')
+                        ->where('id','=',$i)
+                        ->get();  
+
+        $data[$j]= array($nama_provinsi,$prov) ;
+
+    }
+
+    // // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'data'=> $data
+    ],200 );
+
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

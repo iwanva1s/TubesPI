@@ -77,6 +77,8 @@ Route::post('/logout',[AuthController::class, 'logout']);
 
 Route::get('all_hewan_in_pro/{provinsi}',[DiagramController::class, 'all_hewan_in_pro']);
 Route::get('hit_hewan_in_pro/{provinsi}',[DiagramController::class, 'hit_hewan_in_pro']);
+Route::get('hit_pet_in_pro/{provinsi}',[DiagramController::class, 'hit_pet_in_pro']);
+Route::get('test',[DiagramController::class, 'test']);
 
 // Halaman Dokumentasi
 
