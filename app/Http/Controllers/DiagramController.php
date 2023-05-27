@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Hewan;
-use App\Models\Peternakan;
+use App\Models\Produk;
 use App\Models\Provinsi;
+use App\Models\Peternakan;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,7 @@ class DiagramController extends Controller
     return response()->json([
         'status' => 200,
         'jumlah' => $count,
-        'peternakan' => $hewan
+        'data' => $hewan
     ],200 );
     }
     
@@ -114,10 +115,10 @@ class DiagramController extends Controller
         $nama_provinsi = Provinsi::select('nama_provinsi')
                         ->where('id','=',$i)
                         ->get();  
-
         $data[$j]= array($nama_provinsi,$prov) ;
 
     }
+
 
     // // Mengirimkan data ke view
     return response()->json([
@@ -126,24 +127,26 @@ class DiagramController extends Controller
     ],200 );
 
    }
+   
+   public function test2($provinsi)
+    {
+//    jumlah produk yang berasal pada masing provinsi
+    
+    $produk = Produk::join('tbl_peternakan', 'tbl_produk.id_peternakan', '=', 'tbl_peternakan.id')
+                    ->join('tbl_provinsi', 'tbl_peternakan.id_provinsi', '=', 'tbl_provinsi.id')
+                    ->select('tbl_produk.nama_produk', 'tbl_peternakan.nama_peternakan', 'tbl_provinsi.nama_provinsi')
+                    ->where('tbl_provinsi.nama_provinsi','LIKE','%'.$provinsi.'%')
+                    ->get();
 
+    $count = $produk->count();
 
+    // // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'jumlah' => $count,
+        'data' => $produk
+    ],200 );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   }
 
 }
