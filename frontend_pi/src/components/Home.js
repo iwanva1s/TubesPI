@@ -43,7 +43,7 @@ const options = {
 
 export default function Home() {
   const [search, setSearch] =  useState('');
-  const [data, setData] = useState({
+  const [diagram, setDiagram] = useState({
     labels:['Sapi','Ayam', 'Ikan', 'Kambing'],
     datasets: [
       {
@@ -61,8 +61,8 @@ export default function Home() {
       {
         label: 'Dataset 3',
         data:[],
-        borderColor: 'rgb(153, 86, 116)',
-        backgroundColor: 'rgba(153, 86, 116, 0.5)',
+        borderColor: 'rgb(123, 36, 106)',
+        backgroundColor: 'rgba(13, 96, 116, 0.5)',
       },
       {
         label: 'Dataset 4',
@@ -73,121 +73,71 @@ export default function Home() {
     ],
   });
 
-  const getData= async search => {
-    const labelSet = [];
-    const dataSet1 = [];
-    const dataSet2 = [];
-    const dataSet3 = [];
-    const dataSet4 = [];
-    const response = await fetch('http://localhost:8000/api/hit_hewan_in_pro/' + search, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          }
-   }).then((res) => {
-       console.log("respone", res)
-       for (const val of res) {
-        dataSet1.push(val.sapi);
-        dataSet2.push(val.ayam)
-        dataSet3.push(val.ikan)
-        dataSet4.push(val.kambing)
-        .then(data => data.json())
-      }
-    
-      setData({
-          labels:['Sapi','Ayam', 'Ikan', 'Kambing'],
-          datasets: [
-            {
-              label: 'Sapi',
-              data:dataSet1,
-              borderColor: 'rgb(255, 99, 132)',
-              backgroundColor: 'rgba(99, 132, 0.5)',
-            },
-            {
-              label: 'Ayam',
-              data:dataSet2,
-              borderColor: 'rgb(53, 162, 235)',
-              backgroundColor: 'rgba(53, 235, 0.5)',
-            },
-            {
-              label: 'Ikan',
-              data:dataSet3,
-              borderColor: 'rgb(153, 86, 116)',
-              backgroundColor: 'rgba(153, 86, 0.5)',
-            },
-            {
-              label: 'Kambing',
-              data:dataSet4,
-              borderColor: 'rgb(155, 95, 125)',
-              backgroundColor: 'rgba(155, 95, 0.5)',
-            },
-          ],
-        })
-      console.log("arrData", dataSet1, dataSet2, dataSet3, dataSet4)
-   }).catch(e => {
-          console.log("error", e)
-      })
-  }
+    const fetchData= async search => {
+        const url = 'http://localhost:8000/api/hit_hewan_in_pro/' + search
+        const labelSet = []
+        const dataSet1 = [];
+        const dataSet2 = [];
+        const dataSet3 = [];
+        const dataSet4 = [];
+      await fetch(url).then((data)=> {
+          console.log("Api data", data)
+          const response = data.json();
+          return response
+      }).then((response) => {
+          console.log("response", response)
+         for (const val of response) {
+             dataSet1.push(val.sapi);
+             dataSet2.push(val.ayam);
+             dataSet3.push(val.ikan);
+             dataSet4.push(val.kambing);
+             // labelSet.push(val.name)
+         }
+         setDiagram({
+             labels:['Sapi','Ayam', 'Ikan', 'Kambing'],
+             datasets: [
+               {
+                 label: 'Sapi',
+                 data:dataSet1,
+                 borderColor: 'rgb(255, 99, 132)',
+                 backgroundColor: 'rgba(99, 132, 0.5)',
+               },
+               {
+                 label: 'Ayam',
+                 data:dataSet2,
+                 borderColor: 'rgb(53, 162, 235)',
+                 backgroundColor: 'rgba(53, 235, 0.5)',
+               },
+               {
+                label: 'Ikan',
+                data:dataSet3,
+                borderColor: 'rgb(123, 36, 106)',
+                backgroundColor: 'rgba(36, 106, 0.5)',
+              },
+              {
+                label: 'Kambing',
+                data:dataSet4,
+                borderColor: 'rgb(155, 95, 125)',
+                backgroundColor: 'rgba(155, 125, 0.5)',
+              },
+             ],
+           })
+         console.log("arrData", dataSet1, dataSet2, dataSet3, dataSet4)
+      }).catch(e => {
+             console.log("error", e)
+         })
+     }
+     
 
-  useEffect(()=> {
-      getData();
-  },[])
 
-// const getData = async search => {
-//   const labelSet = [];
-//   const dataSet1 = [];
-//   const dataSet2 = [];
-//   const dataSet3 = [];
-//   const response = await fetch('http://localhost:8000/api/hit_hewan_in_pro/' + search, {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json',
-//     }
-//     }).then((res) => {
-//       console.log("respone", res)
-//         for (const val of res) {
-//           dataSet1.push(val.sapi);
-//           dataSet2.push(val.ayam)
-//           dataSet3.push(val.ikan)
-//           dataSet4.push(val.kambing)
-//           .then(data => data.json())
-//         }
-//         setData({
-//                       labels:['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-//                       datasets: [
-//                         {
-//                           label: 'Dataset ID',
-//                           data:dataSet1,
-//                           borderColor: 'rgb(255, 99, 132)',
-//                           backgroundColor: 'rgba(99, 132, 0.5)',
-//                         },
-//                         {
-//                           label: 'Dataset ID2',
-//                           data:dataSet2,
-//                           borderColor: 'rgb(53, 162, 235)',
-//                           backgroundColor: 'rgba(53, 235, 0.5)',
-//                         },
-//                       ],
-//                     })
-//                   console.log("arrData", dataSet1, dataSet2)
-//                }).catch(e => {
-//                       console.log("error", e)
-//                   })
-//               }
-              
-//               fetchData();
-//           },[])
-  // const data = await response.json()
-  
-  // console.log(data.peternakan);
-      
-      
-  const submitHandler = e => {
-    e.preventDefault();
-    getData(search);
-}
+useEffect(() => {
+  fetchData();
+}, []);
+
+const submitHandler = e => {
+  e.preventDefault();
+  fetchData(search);
+};
     
     
 
@@ -297,9 +247,9 @@ export default function Home() {
     </button>
 </form>
 {
-                console.log("data", data)
+                console.log("data", diagram)
             }
-            <Bar data={data} options={options}/>
+            <Bar data={diagram} options={options}/>
 </section>
 
 </>
