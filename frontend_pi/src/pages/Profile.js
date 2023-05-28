@@ -61,18 +61,17 @@ const handleSubmit = async e => {
 
   const response = await CreatePeternakan(peternakan);
   console.log(response);
-  // window.location.href = "/profile";
-  // if (response.status == 200) {
-  //     swal("Success", response.success.message, "success", {
-  //       buttons: true,
-  //       timer: 2000,
-  //     })
-  //   .then((value) => {
-  //     window.location.href = "/profile";
-  //   });
-  // } else {
-  //   swal("Failed", response.message, "error");
-  //   }
+  if (response.status == 200) {
+      swal("Success", response.message, "success", {
+        buttons: true,
+        timer: 2000,
+      })
+    .then((value) => {
+      window.location.href = "/profile";
+    });
+  } else {
+    swal("Failed", response.message, "error");
+    }
     }
 
   return (
@@ -164,7 +163,7 @@ const handleSubmit = async e => {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
               <div className="text-gray-600">
