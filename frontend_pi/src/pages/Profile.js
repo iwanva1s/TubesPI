@@ -3,7 +3,7 @@ import swal from 'sweetalert';
 
 async function CreatePeternakan(peternakan) {
   const token = localStorage.getItem('token');
-  peternakan = {...peternakan, email: localStorage.getItem('email')};
+  peternakan = {...peternakan, email: localStorage.getItem('email').replace(/['"]+/g, '')};
   console.log(peternakan.email);
   return fetch('http://127.0.0.1:8000/api/peternakan', {
     method: 'POST',
@@ -110,7 +110,7 @@ const handleSubmit = async e => {
                 <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                   <div className="md:col-span-5">
                     <label htmlFor="alamat_peternakan">Farm address</label>
-                    <input type="text" name="alamat_peternakan" id="alamat_peternakan" onChange={e => setPeternakan({...peternakan, alamat_peternakan : e.target.value})} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your farm address.." />
+                    <input type="text" name="alamat_peternakan" id="alamat_peternakan" onChange={e => setPeternakan({...peternakan, alamat_peternakan : e.target.value})} defaultValue={peternakan.alamat_peternakan} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your farm address.." />
                   </div>
                   <div className="md:col-span-5">
                     <label htmlFor="nama_peternakan">The farm name</label>
@@ -130,10 +130,11 @@ const handleSubmit = async e => {
             </div>
             </form>
           </div>
+
           <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
               <div className="text-gray-600">
-                <p className="font-medium text-lg">Live account Details</p>
+                <p className="font-medium text-lg">Livestock Details</p>
                 <p>Please fill out all the fields.</p>
               </div>
               <div className="lg:col-span-2">
@@ -163,10 +164,11 @@ const handleSubmit = async e => {
               </div>
             </div>
           </div>
+          
           <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
               <div className="text-gray-600">
-                <p className="font-medium text-lg">Product account Details</p>
+                <p className="font-medium text-lg">Product Details</p>
                 <p>Please fill out all the fields.</p>
               </div>
               <div className="lg:col-span-2">
@@ -197,9 +199,6 @@ const handleSubmit = async e => {
             </div>
           </div>
         </div>
-        <a href="https://www.buymeacoffee.com/dgauderman" target="_blank" className="md:absolute bottom-0 right-0 p-4 float-right">
-          <img src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-3.svg" alt="Buy Me A Coffee" className="transition-all rounded-full w-14 -rotate-45 hover:shadow-sm shadow-lg ring hover:ring-4 ring-white" />
-        </a>
       </div>
     </div>
   </div>

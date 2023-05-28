@@ -44,31 +44,31 @@ const options = {
 export default function Home() {
   const [search, setSearch] =  useState('');
   const [diagram, setDiagram] = useState({
-    labels:['jumlah hewan'],
+    labels:['jumlah hewan per provinsi'],
     datasets: [
       {
-        label: 'Dataset 1',
+        label: 'Sapi',
         data:[],
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(25, 90, 13, 0.5)',
+        borderColor: 'rgb(250,128,114)',
+        backgroundColor: 'rgba(250,128,114,1.000)',
       },
       {
-        label: 'Dataset 2',
+        label: 'Ayam',
         data:[],
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        borderColor: 'rgb(255,99,71)',
+        backgroundColor: 'rgba(255,99,71,1.000)',
       },
       {
-        label: 'Dataset 3',
+        label: 'Ikan',
         data:[],
-        borderColor: 'rgb(123, 36, 106)',
-        backgroundColor: 'rgba(13, 96, 116, 0.5)',
+        borderColor: 'rgb(205,92,92)',
+        backgroundColor: 'rgba(205,92,92,1.000)',
       },
       {
-        label: 'Dataset 4',
+        label: 'Kambing',
         data:[],
-        borderColor: 'rgb(155, 95, 125)',
-        backgroundColor: 'rgba(155, 95, 125, 0.5)',
+        borderColor: 'rgb(220,20,60)',
+        backgroundColor: 'rgba(220,20,60,1.000)',
       },
     ],
   });
@@ -97,26 +97,26 @@ export default function Home() {
                {
                  label: 'Sapi',
                  data:dataSet1,
-                 borderColor: 'rgb(255, 99, 132)',
-                 backgroundColor: 'rgba(99, 132, 0.5)',
+                 borderColor: 'rgb(250,128,114)',
+                 backgroundColor: 'rgba(250,128,114,1.000)',
                },
                {
                  label: 'Ayam',
                  data:dataSet2,
-                 borderColor: 'rgb(53, 162, 235)',
-                 backgroundColor: 'rgba(53, 235, 0.5)',
+                 borderColor: 'rgb(255,99,71)',
+                 backgroundColor: 'rgba(255,99,71,1.000)',
                },
                {
                 label: 'Ikan',
                 data:dataSet3,
-                borderColor: 'rgb(123, 36, 106)',
-                backgroundColor: 'rgba(36, 106, 0.5)',
+                borderColor: 'rgb(205,92,92)',
+                backgroundColor: 'rgba(205,92,92,1.000)',
               },
               {
                 label: 'Kambing',
                 data:dataSet4,
-                borderColor: 'rgb(155, 95, 125)',
-                backgroundColor: 'rgba(155, 125, 0.5)',
+                borderColor: 'rgb(220,20,60)',
+                backgroundColor: 'rgba(220,20,60,1.000)',
               },
              ],
            })
@@ -134,8 +134,6 @@ const submitHandler = e => {
   e.preventDefault();
   fetchData(search);
 };
-    
-    
 
   return (
 <>
@@ -242,10 +240,21 @@ const submitHandler = e => {
         <span class="sr-only">Search</span>
     </button>
 </form>
-{
+{/* {
                 // console.log("data", diagram)
             }
-            <Bar data={diagram} options={options}/>
+            <Bar data={diagram} options={options}/> */}
+            <Bar
+            data={diagram}
+            options={{
+            responsive: true, // Mengaktifkan responsivitas chart
+            scales: {
+              x: {
+                  barThickness: 'flex', // Mengatur lebar batang bar menjadi fleksibel
+            },
+          },
+        }}
+/>
 </section>
 
 </>

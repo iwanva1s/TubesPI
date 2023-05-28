@@ -76,9 +76,7 @@ class PeternakanController extends Controller
                     'message' => "Ada Yang Salah"
                 ],500);
             }
-            
         }
-        
     }
     
     public function show($id)
