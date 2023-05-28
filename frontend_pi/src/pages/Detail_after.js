@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 
-export default function Detail({match}) {
+export default function Detail2({match}) {
     console.log(match.params.pid);
 
     const [detailHewan, setDetailHewan] = useState([]);
@@ -12,16 +12,16 @@ export default function Detail({match}) {
     const identity = match.params.pid;
 
     const getData = async ({ match }) => {
-        // const token = localStorage.getItem('token');
-        // console.log(token);
-        // const tokenType = localStorage.getItem('token_type');
+        const token = localStorage.getItem('token');
+        console.log(token);
+        const tokenType = localStorage.getItem('token_type');
         const response = await fetch('http://localhost:8000/api/detailsHewanProduk/' + match.params.pid,
         {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            // 'Authorization': 'Bearer ' + token
+            'Authorization': 'Bearer ' + token
           }
         })
         // .then(data => data.json())

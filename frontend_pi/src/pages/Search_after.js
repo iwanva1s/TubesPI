@@ -1,7 +1,7 @@
 import { useState, useEffect} from "react";
 import { useHistory } from 'react-router-dom';
 
-function Home2() {
+function Search2() {
 
     const [peternakan, setPeternakan] = useState([]);
     const [mounted, setMounted] = useState(false);
@@ -11,7 +11,7 @@ function Home2() {
 
     const getData = async search => {
         const token = localStorage.getItem('token');
-        // console.log(token);
+        console.log(token);
         const tokenType = localStorage.getItem('token_type');
         const response = await fetch('http://localhost:8000/api/pet_in_pro/' + search, {
           method: 'GET',
@@ -132,4 +132,4 @@ function Home2() {
   )
 }
 
-export default Home2
+export default Search2
