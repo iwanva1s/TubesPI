@@ -1,9 +1,47 @@
 import React, { useState, useEffect} from "react";
 import swal from 'sweetalert';
 
+async function CreatePeternakan(peternakan) {
+  const token = localStorage.getItem('token');
+  peternakan = {...peternakan, email: localStorage.getItem('email')};
+  console.log(peternakan.email);
+  return fetch('http://127.0.0.1:8000/api/peternakan', {
+    method: 'POST',
+    dataType: "json",
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify(peternakan)
+  })
+  .then(data => data.json())
+}
+console.log(localStorage.getItem('email'));
+
 function Profile() {
   const [mounted, setMounted] = useState(false);
   const [namaUser, setNamaUser] = useState();
+  const [provinsi, setProvinsi] = useState();
+  const [peternakan, setPeternakan] = useState({alamat_peternakan:'', nama_peternakan:'', no_telp:'', email:''});
+  
+  const getProvinsi = async ()=> {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    const response = await fetch('http://localhost:8000/api/provinsi/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    })
+    // .then(data => data.json())
+    const data = await response.json()
+    setProvinsi(data.provinsi);
+    // console.log(data.provinsi);
+  }
+  console.log(peternakan);
 
   // fungsi untuk mengambil data user
   useEffect(() => {
@@ -11,163 +49,161 @@ function Profile() {
         setMounted(true);
     }
     else {
-        // getData();
+        getProvinsi();
         setNamaUser(localStorage.getItem('name'));
     }
 }, [mounted]);
 
+const handleSubmit = async e => {
+  e.preventDefault();
+  // const email_user = localStorage.getItem('email');
+  // setPeternakan({...peternakan, email: email_user});
+
+  const response = await CreatePeternakan(peternakan);
+  console.log(response);
+  // window.location.href = "/profile";
+  // if (response.status == 200) {
+  //     swal("Success", response.success.message, "success", {
+  //       buttons: true,
+  //       timer: 2000,
+  //     })
+  //   .then((value) => {
+  //     window.location.href = "/profile";
+  //   });
+  // } else {
+  //   swal("Failed", response.message, "error");
+  //   }
+    }
+
   return (
-    <>
-    
-{/* component  */}
-<div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
-  <div class="container max-w-screen-lg mx-auto">
     <div>
-      <h2 class="font-semibold text-xl text-gray-600">Welcome {namaUser}</h2>
-      <p class="text-gray-500 mb-6">Register your farm now!</p>
-
-
-      <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-
-        <div class="text-gray-600">
-            <p class="font-medium text-lg">Province</p>
-            <p>Please select your province.</p>
+    <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
+      <div className="container max-w-screen-lg mx-auto">
+        <div>
+          <h2 className="font-semibold text-xl text-gray-600">Welcome {namaUser}</h2>
+          <p className="text-gray-500 mb-6">Register your farm now!</p>
+          <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+          <form class="space-y-6" action="" method="POST" onSubmit={handleSubmit}>
+            <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+              <div className="text-gray-600">
+                <p className="font-medium text-lg">Province</p>
+                <p>Please select your province.</p>
+              </div>
+              <div className="lg:col-span-2">
+                <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                  <div className="md:col-span-5">    
+                    <label htmlFor="id_provinsi" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Province</label>
+                    <select id="id_provinsi" onChange={e => setPeternakan({...peternakan, id_provinsi : e.target.value})} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option selected>Choose a province</option>
+                      {provinsi!= undefined && provinsi.map(provinsi => (
+                      <option value = {provinsi.id_provinsi}>{provinsi.nama_provinsi}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="text-gray-600">
+                <p className="font-medium text-lg">Farm Details</p>
+                <p>Please fill out all the fields.</p>
+              </div>
+              <div className="lg:col-span-2">
+                <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                  <div className="md:col-span-5">
+                    <label htmlFor="alamat_peternakan">Farm address</label>
+                    <input type="text" name="alamat_peternakan" id="alamat_peternakan" onChange={e => setPeternakan({...peternakan, alamat_peternakan : e.target.value})} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your farm address.." />
+                  </div>
+                  <div className="md:col-span-5">
+                    <label htmlFor="nama_peternakan">The farm name</label>
+                    <input type="text" name="nama_peternakan" id="nama_peternakan" onChange={e => setPeternakan({...peternakan, nama_peternakan : e.target.value})} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your farm name.." />
+                  </div>
+                  <div className="md:col-span-5">
+                    <label htmlFor="no_telp">Phone number</label>
+                    <input type="text" name="no_telp" id="no_telp" onChange={e => setPeternakan({...peternakan, no_telp : e.target.value})} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your phone number.." />
+                  </div>
+                  <div className="md:col-span-5 text-right">
+                    <div className="inline-flex items-end">
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+            </div>
+            </form>
           </div>
-
-          <div class="lg:col-span-2">
-            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-              <div class="md:col-span-5">    
-              <label for="countries_disabled" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Province</label>
-              <select disabled id="id_peternakan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected>Choose a province</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
-              </select>
+          <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+            <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+              <div className="text-gray-600">
+                <p className="font-medium text-lg">Live account Details</p>
+                <p>Please fill out all the fields.</p>
+              </div>
+              <div className="lg:col-span-2">
+                <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                  <div className="md:col-span-5">
+                    <label htmlFor="nama_hewan">Animal names</label>
+                    <input type="text" name="nama_hewan" id="nama_hewan" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your animal names.." />
+                  </div>
+                  <div className="md:col-span-5">
+                    <label htmlFor="jenis_hewan">Animal types</label>
+                    <input type="text" name="jenis_hewan" id="jenis_hewan" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your animal types.." />
+                  </div>
+                  <div className="md:col-span-5">
+                    <label htmlFor="berat_hewan">Animal weight</label>
+                    <input type="text" name="berat_hewan" id="berat_hewan" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your animal weight" />
+                  </div>
+                  <div className="md:col-span-5">
+                    <label htmlFor="harga_hewan">Animal prices</label>
+                    <input type="text" name="harga_hewan" id="harga_hewan" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your animal prices" />
+                  </div>
+                  <div className="md:col-span-5 text-right">
+                    <div className="inline-flex items-end">
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
-          <div class="text-gray-600">
-            <p class="font-medium text-lg">Farm Details</p>
-            <p>Please fill out all the fields.</p>
-          </div>
-
-          <div class="lg:col-span-2">
-            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-              <div class="md:col-span-5">
-                <label for="alamat_peternakan">Farm address</label>
-                <input type="text" name="alamat_peternakan" id="alamat_peternakan" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Enter your farm address.." />
+          <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+            <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+              <div className="text-gray-600">
+                <p className="font-medium text-lg">Product account Details</p>
+                <p>Please fill out all the fields.</p>
               </div>
-
-              <div class="md:col-span-5">
-                <label for="nama_peternakan">The farm name</label>
-                <input type="text" name="nama_peternakan" id="nama_peternakan" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Enter your farm name.." />
-              </div>
-
-              <div class="md:col-span-5">
-                <label for="no_telp">Phone number</label>
-                <input type="text" name="no_telp" id="no_telp" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Enter your phone number.." />
-              </div>
-              <div class="md:col-span-5 text-right">
-                <div class="inline-flex items-end">
-                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+              <div className="lg:col-span-2">
+                <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                  <div className="md:col-span-5">
+                    <label htmlFor="nama_produk">Product names</label>
+                    <input type="text" name="nama_produk" id="nama_produk" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your product namess.." />
+                  </div>
+                  <div className="md:col-span-5">
+                    <label htmlFor="jenis_produk">Product types</label>
+                    <input type="text" name="jenis_produk" id="jenis_produk" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your product types.." />
+                  </div>
+                  <div className="md:col-span-5">
+                    <label htmlFor="berat_produk">Product weight</label>
+                    <input type="text" name="berat_produk" id="berat_produk" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your product weight" />
+                  </div>
+                  <div className="md:col-span-5">
+                    <label htmlFor="harga_produk">Product prices</label>
+                    <input type="text" name="harga_produk" id="harga_produk" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Enter your product prices" />
+                  </div>
+                  <div className="md:col-span-5 text-right">
+                    <div className="inline-flex items-end">
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <a href="https://www.buymeacoffee.com/dgauderman" target="_blank" className="md:absolute bottom-0 right-0 p-4 float-right">
+          <img src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-3.svg" alt="Buy Me A Coffee" className="transition-all rounded-full w-14 -rotate-45 hover:shadow-sm shadow-lg ring hover:ring-4 ring-white" />
+        </a>
       </div>
-
-      <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-          <div class="text-gray-600">
-            <p class="font-medium text-lg">Live account Details</p>
-            <p>Please fill out all the fields.</p>
-          </div>
-
-          <div class="lg:col-span-2">
-            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-              <div class="md:col-span-5">
-                <label for="nama_hewan">Animal names</label>
-                <input type="text" name="nama_hewan" id="nama_hewan" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Enter your animal names.."  />
-              </div>
-
-              <div class="md:col-span-5">
-                <label for="jenis_hewan">Animal types</label>
-                <input type="text" name="jenis_hewan" id="jenis_hewan" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Enter your animal types.." />
-              </div>
-
-              <div class="md:col-span-5">
-                <label for="berat_hewan">Animal weight</label>
-                <input type="text" name="berat_hewan" id="berat_hewan" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Enter your animal weight" />
-              </div>
-
-              <div class="md:col-span-5">
-                <label for="harga_hewan">Animal prices</label>
-                <input type="text" name="harga_hewan" id="harga_hewan" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Enter your animal prices" />
-              </div>
-
-             
-              <div class="md:col-span-5 text-right">
-                <div class="inline-flex items-end">
-                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-          <div class="text-gray-600">
-            <p class="font-medium text-lg">Product account Details</p>
-            <p>Please fill out all the fields.</p>
-          </div>
-
-          <div class="lg:col-span-2">
-            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-              <div class="md:col-span-5">
-                <label for="nama_produk">Product names</label>
-                <input type="text" name="nama_produk" id="nama_produk" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Enter your product namess.." />
-              </div>
-
-              <div class="md:col-span-5">
-                <label for="jenis_produk">Product types</label>
-                <input type="text" name="jenis_produk" id="jenis_produk" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Enter your product types.." />
-              </div>
-
-              <div class="md:col-span-5">
-                <label for="berat_produk">Product weight</label>
-                <input type="text" name="berat_produk" id="berat_produk" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Enter your product weight" />
-              </div>
-
-              <div class="md:col-span-5">
-                <label for="harga_produk">Product prices</label>
-                <input type="text" name="harga_produk" id="harga_produk" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Enter your product prices" />
-              </div>
-
-             
-              <div class="md:col-span-5 text-right">
-                <div class="inline-flex items-end">
-                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-
-    <a href="https://www.buymeacoffee.com/dgauderman" target="_blank" class="md:absolute bottom-0 right-0 p-4 float-right">
-      <img src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-3.svg" alt="Buy Me A Coffee" class="transition-all rounded-full w-14 -rotate-45 hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"/>
-    </a>
+    </div>
   </div>
-</div>
-    </>
+  
   )
 }
 

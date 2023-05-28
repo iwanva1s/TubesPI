@@ -36,6 +36,7 @@ export default function Regis () {
       .then((value) => {
         localStorage.setItem('token', response.success.token);
         localStorage.setItem('user', JSON.stringify(response.success.user));
+        localStorage.setItem('email', JSON.stringify(response.success.email));
         window.location.href = "/";
       });
     } else {

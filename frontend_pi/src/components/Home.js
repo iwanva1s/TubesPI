@@ -36,7 +36,7 @@ const options = {
     },
     title: {
       display: true,
-      text: 'Horizontal Bar Chart',
+      text: 'Jumlah Hewan',
     },
   },
 };
@@ -44,7 +44,7 @@ const options = {
 export default function Home() {
   const [search, setSearch] =  useState('');
   const [diagram, setDiagram] = useState({
-    labels:['Sapi','Ayam', 'Ikan', 'Kambing'],
+    labels:['jumlah hewan'],
     datasets: [
       {
         label: 'Dataset 1',
@@ -86,15 +86,13 @@ export default function Home() {
           return response
       }).then((response) => {
           console.log("response", response)
-         for (const val of response) {
-             dataSet1.push(val.sapi);
-             dataSet2.push(val.ayam);
-             dataSet3.push(val.ikan);
-             dataSet4.push(val.kambing);
-             // labelSet.push(val.name)
-         }
+          dataSet1.push(response.sapi);
+          dataSet2.push(response.ayam);
+          dataSet3.push(response.ikan);
+          dataSet4.push(response.kambing);
+
          setDiagram({
-             labels:['Sapi','Ayam', 'Ikan', 'Kambing'],
+             labels:['jumlah hewan'],
              datasets: [
                {
                  label: 'Sapi',
@@ -128,11 +126,9 @@ export default function Home() {
          })
      }
      
-
-
-useEffect(() => {
-  fetchData();
-}, []);
+// useEffect(() => {
+//   fetchData();
+// }, []);
 
 const submitHandler = e => {
   e.preventDefault();
@@ -247,7 +243,7 @@ const submitHandler = e => {
     </button>
 </form>
 {
-                console.log("data", diagram)
+                // console.log("data", diagram)
             }
             <Bar data={diagram} options={options}/>
 </section>

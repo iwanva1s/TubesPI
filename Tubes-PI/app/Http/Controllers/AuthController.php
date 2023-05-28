@@ -34,6 +34,7 @@ class AuthController extends Controller
         );
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['name'] =  $user->name;
+        $success['email'] =  $user->email;
         $success['message'] = 'User has been created';
 
         return response()->json(['success'=>$success], 200);
@@ -54,6 +55,7 @@ class AuthController extends Controller
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->plainTextToken;
             $success['name'] =  $user->name;
+            $success['email'] =  $user->email;
             $success['token_type'] = 'Bearer';
             $success['message'] = 'User Singed in';
 

@@ -30,7 +30,6 @@ function Home2() {
       const getAllData = async ()=> {
         const token = localStorage.getItem('token');
         console.log(token);
-        const tokenType = localStorage.getItem('token_type');
         const response = await fetch('http://localhost:8000/api/pet_pro/', {
           method: 'GET',
           headers: {

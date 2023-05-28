@@ -12,8 +12,8 @@ class Peternakan extends Model
     protected $table = 'tbl_peternakan';
 
     protected $fillable = [
-        'provinsi_peternakan',
-        'kab_kota_peternakan',
+        'id_provinsi',
+        'id_user',
         'alamat_peternakan',
         'nama_peternakan',
         'no_telp'

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Hewan;
 use App\Models\Peternakan;
 use App\Models\Provinsi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -39,6 +40,7 @@ class PeternakanController extends Controller
 
         $validator = Validator::make($request->all(),[
             'id_provinsi' => 'required|integer|max:38',
+            'email' => 'required|email|max:200',
             'alamat_peternakan' => 'required|string|max:200',
             'nama_peternakan' => 'required|string|max:200',
             'no_telp' => 'required|max:200'
@@ -52,9 +54,11 @@ class PeternakanController extends Controller
             ],422);
 
         }else{
-
+            $id_user = User::where('email',$request->email)->select('id')->first();
+            // dd($id_user);
             $peternakan = Peternakan::create([
                 'id_provinsi' => $request->id_provinsi,
+                'id_user' => $id_user->id,
                 'alamat_peternakan' => $request->alamat_peternakan,
                 'nama_peternakan' => $request->nama_peternakan,
                 'no_telp' => $request->no_telp
@@ -125,6 +129,7 @@ class PeternakanController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'id_provinsi' => 'required|integer|max:200',
+            'email' => 'required|email|max:200',
             'alamat_peternakan' => 'required|string|max:200',
             'nama_peternakan' => 'required|string|max:200',
             'no_telp' => 'required|max:200'
@@ -145,6 +150,7 @@ class PeternakanController extends Controller
 
                 $peternakan->update([
                     'id_provinsi' => $request->id_provinsi,
+                    'id_user' => $request->id_user,
                     'alamat_peternakan' => $request->alamat_peternakan,
                     'nama_peternakan' => $request->nama_peternakan,
                     'no_telp' => $request->no_telp
@@ -348,5 +354,22 @@ class PeternakanController extends Controller
         'produk' => $data2
     ],200 );
     }
+
+
+
+public function provinsi()
+{
+    // Mengambil data provinsi
+    $data = DB::table('tbl_provinsi')
+                ->select('id as id_provinsi',
+                        'nama_provinsi',)
+                ->get();
+
+    // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'provinsi' => $data
+    ],200 );
+}
 
 }

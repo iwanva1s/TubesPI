@@ -49,7 +49,8 @@ Route::get('pro_in_prov/{provinsi}',[DiagramController::class, 'pro_in_prov']);
 Route::get('pro_each_prov',[DiagramController::class, 'pro_each_prov']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    
+//data provinsi
+Route::get('/provinsi',[PeternakanController::class, 'provinsi']);
 
 // API untuk tabel tbl_peternakan
 Route::get('peternakan',[PeternakanController::class, 'index']);
@@ -88,6 +89,7 @@ Route::get('pet/{id_pet}',[PeternakanController::class, 'gab1_id_pet']);
 // ===================================================================================//
 // data semua peternakan dalam sebuah daerah
 Route::get('pet_pro/{id_pro}',[PeternakanController::class, 'pet_pro2']);
+
 
 
 // logout
