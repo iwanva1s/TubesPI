@@ -50,7 +50,7 @@ class HewanController extends Controller
             ],422);
 
         }else{
-
+            
             $hewan = Hewan::create([
                 'nama_hewan' => $request->nama_hewan,
                 'jenis_hewan' => $request->jenis_hewan,

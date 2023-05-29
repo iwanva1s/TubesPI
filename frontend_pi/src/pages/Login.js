@@ -23,7 +23,7 @@ export default function Login() {
           email,
           password
         });
-        console.log(response.success.email);
+        console.log(response.success.token);
         if ('token' in response.success) {
             swal("Success", response.success.message, "success", {
               buttons: false,
@@ -32,7 +32,6 @@ export default function Login() {
           .then((value) => {
             localStorage.setItem('token', response.success.token);
             localStorage.setItem('user', JSON.stringify(response.success.user));
-            localStorage.setItem('email', JSON.stringify(response.success.email));
             window.location.href = "/";
           });
         } else {

@@ -7,7 +7,6 @@ function Search2() {
     const [mounted, setMounted] = useState(false);
     const [namaUser, setNamaUser] = useState();
     const [search, setSearch] =  useState('');
-    
 
     const getData = async search => {
         const token = localStorage.getItem('token');
@@ -95,7 +94,6 @@ function Search2() {
 {/* <div class="pt-10">
 
 </div> */}
-
 
 <div class="flex flex-col gap-4 lg:p-4 p-2  rounde-lg m-2">
 

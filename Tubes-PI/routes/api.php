@@ -34,6 +34,7 @@ Route::get('pet_in_pro/{nama_pro}',[PeternakanController::class, 'pet_in_pro']);
 // Detail Hewan & Produk dari suatu peternakan
 Route::get('detailsHewanProduk/{id}',[PeternakanController::class, 'detailsHewanProduk']);
 
+
 //Untuk keperluan Diagram
 //data jumlah dan data seluruh hewan di tiap provinsi
 Route::get('all_hewan_in_pro/{provinsi}',[DiagramController::class, 'all_hewan_in_pro']);
@@ -48,9 +49,15 @@ Route::get('pro_in_prov/{provinsi}',[DiagramController::class, 'pro_in_prov']);
 //jumlah seluruh produk tiap provinsi
 Route::get('pro_each_prov',[DiagramController::class, 'pro_each_prov']);
 
+
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
 //data provinsi
 Route::get('/provinsi',[PeternakanController::class, 'provinsi']);
+
+//data provinsi
+Route::get('/Namapeternakan',[PeternakanController::class, 'Namapeternakan']);
 
 // API untuk tabel tbl_peternakan
 Route::get('peternakan',[PeternakanController::class, 'index']);
@@ -90,13 +97,7 @@ Route::get('pet/{id_pet}',[PeternakanController::class, 'gab1_id_pet']);
 // data semua peternakan dalam sebuah daerah
 Route::get('pet_pro/{id_pro}',[PeternakanController::class, 'pet_pro2']);
 
-
-
 // logout
 Route::post('/logout',[AuthController::class, 'logout']);
-
-
-
-// Halaman Dokumentasi
 
 });

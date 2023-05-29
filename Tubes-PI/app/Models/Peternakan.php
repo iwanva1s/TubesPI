@@ -13,7 +13,6 @@ class Peternakan extends Model
 
     protected $fillable = [
         'id_provinsi',
-        'id_user',
         'alamat_peternakan',
         'nama_peternakan',
         'no_telp'

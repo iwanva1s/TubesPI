@@ -22,8 +22,6 @@ class User extends Authenticatable
         'email',
         'password',
         'api_token',
-        // 'id_provinsi',
-        // 'id_peternakan',
     ];
 
     /**
