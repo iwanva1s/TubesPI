@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 // import pet from '../img/pet.png'
-import farmicon from '../img/farmicon.png'
+import farmbarn from '../img/farmbarn.png'
 
 function Navbar2() {
 
@@ -27,7 +27,7 @@ function Navbar2() {
 
 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
   <a href="/" class="flex items-center">
-      <img src={farmicon} class="h-9 mr-3" alt="Pet Logo" />
+      <img src={farmbarn} class="h-9 mr-3" alt="Pet Logo" />
       <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">PeternaKu</span>
   </a>
   <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
