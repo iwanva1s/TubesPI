@@ -2,7 +2,7 @@ import { useState, useEffect} from "react";
 import { useHistory } from 'react-router-dom';
 
 function Search() {
-
+    //state
     const [peternakan, setPeternakan] = useState([]);
     const [mounted, setMounted] = useState(false);
     const [namaUser, setNamaUser] = useState();
@@ -10,39 +10,27 @@ function Search() {
     
 
     const getData = async search => {
-        // const token = localStorage.getItem('token');
-        // console.log(token);
-        // const tokenType = localStorage.getItem('token_type');
         const response = await fetch('http://localhost:8000/api/pet_in_pro/' + search, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            // 'Authorization': 'Bearer ' + token
           }
         })
-        // .then(data => data.json())
         const data = await response.json()
         setPeternakan(data.peternakan);
-        // console.log(data.peternakan);
       }
 
       const getAllData = async ()=> {
-        // const token = localStorage.getItem('token');
-        // console.log(token);
-        // const tokenType = localStorage.getItem('token_type');
         const response = await fetch('http://localhost:8000/api/pet_pro/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            // 'Authorization': 'Bearer ' + token
           }
         })
-        // .then(data => data.json())
         const data = await response.json()
         setPeternakan(data.peternakan);
-        // console.log(data.peternakan);
       }
       console.log(peternakan);
 
@@ -56,6 +44,7 @@ function Search() {
         }
     }, [mounted]);
 
+    //fungsi untuk button search
     const submitHandler = e => {
         e.preventDefault();
         getData(search);

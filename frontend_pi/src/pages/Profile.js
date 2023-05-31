@@ -60,8 +60,7 @@ function Profile() {
   const [peternakan, setPeternakan] = useState({alamat_peternakan:'', nama_peternakan:'', no_telp:''});
   const [hewan, setHewan] = useState({nama_hewan:'', jenis_hewan:'', berat_hewan:'', harga_hewan:'', id_peternakan:''});
   const [produk, setProduk] = useState({nama_produk:'', jenis_produk:'', berat_produk:'', harga_produk:'', id_peternakan:''});
-  const [idPeternakan, setIdPeternakan] = useState('');
-  
+
   const getProvinsi = async ()=> {
     const token = localStorage.getItem('token');
     console.log(token);
@@ -73,7 +72,6 @@ function Profile() {
         'Authorization': 'Bearer ' + token
       }
     })
-    // .then(data => data.json())
     const data = await response.json()
     setProvinsi(data.provinsi);
     // console.log(data.provinsi);
@@ -91,13 +89,12 @@ function Profile() {
         'Authorization': 'Bearer ' + token
       }
     })
-    // .then(data => data.json())
     const data = await response.json()
     setPeternakans(data.peternakan);
     // console.log(data.provinsi);
   }
 
-  // fungsi untuk mengambil data user
+  // fungsi untuk menampilkan data provinsi dan peternakan
   useEffect(() => {
     if (!mounted) {
         setMounted(true);

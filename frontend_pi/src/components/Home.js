@@ -125,10 +125,6 @@ export default function Home() {
              console.log("error", e)
          })
      }
-     
-// useEffect(() => {
-//   fetchData();
-// }, []);
 
 const submitHandler = e => {
   e.preventDefault();

@@ -12,19 +12,14 @@ export default function Detail({match}) {
     const identity = match.params.pid;
 
     const getData = async ({ match }) => {
-        // const token = localStorage.getItem('token');
-        // console.log(token);
-        // const tokenType = localStorage.getItem('token_type');
         const response = await fetch('http://localhost:8000/api/detailsHewanProduk/' + match.params.pid,
         {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            // 'Authorization': 'Bearer ' + token
           }
         })
-        // .then(data => data.json())
         const data = await response.json()
         setDetailHewan(data.peternakan);
         setDetailProduk(data.produk);
@@ -34,7 +29,6 @@ export default function Detail({match}) {
     useEffect(() => {
         if (match) {
             getData({ match });
-            // getSaranContent();
         }
     }, [match]);
 
