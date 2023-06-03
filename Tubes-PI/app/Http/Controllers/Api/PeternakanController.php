@@ -378,4 +378,24 @@ public function Namapeternakan()
     ],200 );
 }
 
+public function gabproduk()
+{
+    // Mengambil data dari tabel produk dan peternakan, dan menggabungkannya menggunakan join
+    $data = DB::table('tbl_produk')
+                ->join('tbl_peternakan', 'tbl_produk.id_peternakan', '=', 'tbl_peternakan.id')
+                ->select('tbl_produk.id',
+                        'tbl_produk.nama_produk',
+                        'tbl_produk.jenis_produk',
+                        'tbl_produk.harga_produk',
+                        'tbl_produk.berat_produk',
+                        'tbl_peternakan.nama_peternakan',
+                        'tbl_peternakan.id as id_peternakan',)
+                ->get();
+
+    // Mengirimkan data ke view
+    return response()->json([
+        'status' => 200,
+        'peternakan' => $data
+    ],200 );
+}
 }

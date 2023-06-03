@@ -94,6 +94,9 @@ Route::get('hewan&pet/{id_hewan}',[PeternakanController::class, 'gab1_id_hewan']
 Route::get('pet/{id_pet}',[PeternakanController::class, 'gab1_id_pet']);
 
 // ===================================================================================//
+// data semua hewan dan asal peternakannya
+Route::get('produk&pet',[PeternakanController::class, 'gabProduk']);
+
 // data semua peternakan dalam sebuah daerah
 Route::get('pet_pro/{id_pro}',[PeternakanController::class, 'pet_pro2']);
 

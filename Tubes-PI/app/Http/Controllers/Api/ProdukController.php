@@ -52,10 +52,10 @@ class ProdukController extends Controller
         }else{
             
             $produk = Produk::create([
-                'nama_hewan' => $request->nama_produk,
-                'jenis_hewan' => $request->jenis_produk,
-                'berat_hewan' => $request->berat_produk,
-                'harga_hewan' => $request->harga_produk,
+                'nama_produk' => $request->nama_produk,
+                'jenis_produk' => $request->jenis_produk,
+                'berat_produk' => $request->berat_produk,
+                'harga_produk' => $request->harga_produk,
                 'id_peternakan' => $request->id_peternakan
             ]);
 
