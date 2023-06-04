@@ -118,7 +118,7 @@ class PeternakanController extends Controller
 
     }
 
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
             'id_provinsi' => 'required|integer|max:200',
@@ -135,11 +135,9 @@ class PeternakanController extends Controller
             ],422);
 
         }else{
-
             $peternakan = Peternakan::find($id);
 
             if($peternakan){
-
                 $peternakan->update([
                     'id_provinsi' => $request->id_provinsi,
                     'alamat_peternakan' => $request->alamat_peternakan,

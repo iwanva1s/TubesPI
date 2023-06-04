@@ -26,7 +26,6 @@ function Produk() {
   const [produk, setProduk] = useState([]);
   const [search, setSearch] = useState('');
   const [hasil, setHasil] = useState([]);
-  const [lengkap, setLengkap] = useState([]);
 
   const getAllData = async ()=> {
     const token = localStorage.getItem('token');
@@ -47,12 +46,6 @@ function Produk() {
     console.log(data);
   }
   console.log(formProduk);
-//   useEffect(() => {
-//     const campur = hewan.map((tbl_hewan)=>{
-//         setLengkap([...hewan, nama_peternakan : peternakans])
-//     })
-    
-// }, [mounted]);
 
   const getPeternakan = async ()=> {
     const token = localStorage.getItem('token');
@@ -160,7 +153,7 @@ const handleSubmit3 = async e => {
                                     <th scope="col" class="p-4">Type</th>
                                     <th scope="col" class="p-4">weights</th>
                                     <th scope="col" class="p-4">Prices</th>
-                                    <th scope="col" class="p-4">Action</th>
+                                    {/* <th scope="col" class="p-4">Action</th> */}
                                 </tr>
                             </thead>
  
@@ -190,7 +183,7 @@ const handleSubmit3 = async e => {
                                         </div>
                                     </td>
     
-                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {/* <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div class="flex items-center space-x-4">
                                             <button type="button" data-drawer-target="drawer-update-product" data-drawer-show="drawer-update-product" aria-controls="drawer-update-product" class="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 -ml-0.5" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -207,7 +200,7 @@ const handleSubmit3 = async e => {
                                                 Delete
                                             </button>
                                         </div>
-                                    </td>
+                                    </td> */}
                                 </tr>
                             </tbody>
                                ))} 
